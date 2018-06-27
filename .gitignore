@@ -21,3 +21,17 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Diretorios de compilacao Java
+/Bestcard/build
+/Bestcard/dist
+
+/Bestcard/Bestcard-ejb/build
+/Bestcard/Bestcard-ejb/dist/
+
+/Bestcard-shared/build
+/Bestcard-shared/dist
+
+/Bestcard-web/build
+/Bestcard-web/dist
+
