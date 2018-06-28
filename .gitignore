@@ -23,15 +23,15 @@
 hs_err_pid*
 
 # Diretorios de compilacao Java
-/Bestcard/build
-/Bestcard/dist
+/Ecommerce/build
+/Ecommerce/dist
 
-/Bestcard/Bestcard-ejb/build
-/Bestcard/Bestcard-ejb/dist/
+/Ecommerce/Ecommerce-ejb/build
+/Ecommerce/Ecommerce-ejb/dist/
 
-/Bestcard-shared/build
-/Bestcard-shared/dist
+/Ecommerce-shared/build
+/Ecommerce-shared/dist
 
-/Bestcard-web/build
-/Bestcard-web/dist
+/Ecommerce-web/build
+/Ecommerce-web/dist
 
