@@ -23,6 +23,11 @@
 hs_err_pid*
 
 # Diretorios de compilacao Java
+
+/Ecommerce/nbproject/private
+/Ecommerce/Ecommerce-ejb/nbproject/private
+/Ecommerce-web/nbproject/private
+
 /Ecommerce/build
 /Ecommerce/dist
 
