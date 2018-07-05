@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 
         try {
             ctx = new InitialContext();
-            DataSource ds = (DataSource) ctx.lookup("jdbc/bestcard-pool");
+            DataSource ds = (DataSource) ctx.lookup("jdbc/EcommerceResource");
 
             con = ds.getConnection();
         } catch (NamingException | SQLException ex) {

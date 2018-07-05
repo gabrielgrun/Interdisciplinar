@@ -6,6 +6,7 @@
             <name>Ecommerce-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <included-library dirs="200">reference.Ecommerce-shared.jar</included-library>
+            <included-library dirs="200">file.reference.jaybird-full-3.0.3.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Pacotes de Códigos-fonte"/>
             </source-roots>
