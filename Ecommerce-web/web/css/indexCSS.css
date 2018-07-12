@@ -1,103 +1,117 @@
 html{
-    font: 16px Arial, Verdana;
+    font: 16px/100% Arial, Verdana;
+}
+
+.container{background-color: gray;}
+.header{background-color: blue;}
+.categoria{background-color: chartreuse;}
+.subCategorias{background-color: aqua;}
+.itemBox{border: 1px solid black; background-color: plum;}
+.detalhesProduto{background-color: yellow;}
+
+body{
+    width: 100%;
     margin: 0 auto;
+    max-width: 73.125rem;
+    min-width: 50rem;
 }
 .container{
-    
+    margin: 0 auto;
+    max-width: 73.125rem;
+    min-width: 50rem;
 }
 .header{
-    width: 61.875em;
-    margin: 0 auto;
-    background-color: white;
-    border:  1px solid lightblue;
+    width: 71%;
+    margin: 0 auto .4em;
 }
 .logoHeader{
-    height:  4em;
-    margin-left: 2em;
-    margin-right: 1em;
+    width: 35%;
+    margin: 1%;
 }
 .caixaPesquisaHeader{
-    margin:  0 auto;
-    display:  inline-block;
-    margin-bottom:  1em;
-    position:  absolute;
-    top: 2em;
-    height: 3em;
-    width: 35em;
+    width: 28%;
+    position: absolute;
+    top: 4%;
+    font-size: 100%;
+    margin-left: 1em;
 }
 .carrinhoHeader{
-    height: 3em;
-    float:  right;
-    margin-right: 3em;
-    margin-top:  .8em;
+    width: 6%;
+    float: right;
+    margin: 2% 3.5%;
 }
-a{
+.nav a{
     text-decoration: none;
 }
 .nav{
-    display: inline-block;
-    padding: .5em 0;
-    margin:  .5em 0;
-    background-color:  #131cff;
-    width:  100%;
+    padding: .7%;
+    background-color: #235df3;
+    margin-bottom:  .6%;
 }
 .aNav{
-    margin-left: 3.5em;
-    color: white;
-    border-left: 1px solid #209eff;
-    padding-left: 3.5em;
+    border-left: 1px solid #3cabff;
+    padding: 0% 4%;
+    color:  white;
 }
 .aNav.aNavPrim{
-    border-left: 0;
+    border: 0;
 }
 .categoria{
-    
+    width: 17%;
+    border: 1px solid black;
 }
 .pCate{
-    
+    display: inline-block;
 }
 .categoriaPesq{
-    
+    margin:  6% 0 0 6%;
 }
 .subCategorias{
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid black;
     
 }
 .pSubCate{
-    
+    display: inline-block;
+
 }
-.checkBox{
-    
+.checkRadio{
+
 }
 .listaItens{
-    
+
 }
 .itemBox{
-    
+
 }
-.IMGitem{
-    
+.imagemBox{
+
 }
 .H2item{
-    
+
 }
 .precoItem{
-    
+
 }
 .detalhesProduto{
-    
+
+}
+.imagemBoxDetail{
+
 }
 .enderecoItem{
-    
+
 }
 .comprarItem{
-    
+
 }
 .addCarrinho{
-    
+
 }
 .rodape{
-    
+
 }
 .pRodape{
-    
+
 }
