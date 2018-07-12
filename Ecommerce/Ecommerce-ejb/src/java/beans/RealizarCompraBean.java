@@ -5,13 +5,10 @@
  */
 package beans;
 
+import dao.PedidoDAO;
+import dao.PedidoItemDAO;
 import exceptions.AppException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import model.Pedido;
 import model.PedidoItem;
@@ -21,28 +18,26 @@ import model.PedidoItem;
  * @author Gabriel
  */
 @Stateless
-public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCompraBeanLocal{
+public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCompraBeanLocal {
 
-    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem) throws AppException{
-        
-        
-        //if produto.qtde > 0
-        String sql = "INSERT INTO PEDIDO(ENDERECO, BAIRRO, NUMERO, CEP, COMPLEMENTO, CPF, DATA, VALOR, UF, CIDADE) VALUES(?,?,?,?,?,?,?,?,?,?)";
-        String sql2 = "INSERT INTO PEDIDOITEM(QTDE, VALOR, CPRODUTO, CPEDIDO) VALUES(?,?,?,?)";
-        
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection("jdbc:firebirdsql:localhost/3050:D:\\Tecnico Informática\\Interdisciplinar\\ECOMMERCE_BD.FDB", "SYSDBA", "masterkey");
-        } catch (SQLException ex) {
-            throw new AppException("Ocorreu um erro! Contate o suporte!");
+    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem) throws AppException {
+
+        if (pedidoItem.getcProduto().getQtde() > 0) {
+
+            try {
+                PedidoDAO pedidoDAO = new PedidoDAO();
+                pedidoDAO.inserirPedido(pedido);
+
+                PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
+                pedidoItemDAO.save(pedidoItem);
+            } catch (SQLException ex) {
+                throw new AppException("Ocorreu um erro! Contate o suporte!", ex);
+            } catch (Exception ex) {
+                throw new AppException("Ocorreu um erro! Contate o suporte!", ex);
+            }
+            return true;
+        } else {
+            return false;
         }
-        
-        try {
-            PreparedStatement p = con.prepareStatement(sql);
-            p.setString(1, pedido.getEndereco());
-        } catch (SQLException ex) {
-            throw new AppException("Ocorreu um erro! Contate o suporte!");
-        }
-        return false;
     }
 }
