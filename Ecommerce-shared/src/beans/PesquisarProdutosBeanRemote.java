@@ -5,13 +5,18 @@
  */
 package beans;
 
+import exceptions.AppException;
 import javax.ejb.Remote;
+import model.Produto;
 
 /**
  *
  * @author Gabriel
  */
 @Remote
-public interface PesquisarProdutosBeanRemote {
+public interface PesquisarProdutosBeanRemote
+{
+
+    public Produto pesquisar(String jsonJs) throws AppException;
 
 }

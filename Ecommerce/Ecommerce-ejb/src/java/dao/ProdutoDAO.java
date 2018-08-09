@@ -16,21 +16,25 @@ import util.ConnectionUtil;
  *
  * @author Gabriel
  */
-public class ProdutoDAO {
+public class ProdutoDAO
+{
 
     private Connection connection;
 
-    public ProdutoDAO() throws Exception {
+    public ProdutoDAO() throws Exception
+    {
         connection = ConnectionUtil.getConnection();
     }
 
-    public void save(Produto produto) throws AppException {
+    public void save(Produto produto) throws AppException
+    {
 
-        try {
+        try
+        {
             String SQL = "INSERT INTO PRODUTO(NOME, FOTO, QTDE, PRECO, PROMOCAO, CCATEGORIA, CMARCA, DESCRICAO) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setString(1, produto.getNome());
-            p.setBytes(2, produto.getFoto());
+            p.setString(2, produto.getFoto());
             p.setInt(3, produto.getQtde());
             p.setDouble(4, produto.getPreco());
             p.setDouble(5, produto.getPromocao());
@@ -40,12 +44,14 @@ public class ProdutoDAO {
             p.execute();
             p.close();
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao inserir. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
     }
 
-    public Produto findById(int id) throws Exception {
+    public Produto findById(int id) throws Exception
+    {
         Produto objeto = new Produto();
         String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
                 + "   FROM PRODUTO "
@@ -54,19 +60,21 @@ public class ProdutoDAO {
                 + "   ORDER BY CPRODUTO "
                 + "   WHERE PRODUTO.CPRODUTO = ?";
 
-        try {
+        try
+        {
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, id);
 
             ResultSet rs = p.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 objeto = new Produto();
                 objeto.setcProduto(rs.getInt("CPRODUTO"));
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao(rs.getString("DESCRICAO"));
-                objeto.setFoto(rs.getBytes("FOTO"));
+                objeto.setFoto(rs.getString("FOTO"));
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setPreco(rs.getDouble("PRECO"));
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
@@ -85,14 +93,16 @@ public class ProdutoDAO {
             rs.close();
             p.close();
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
 
         return objeto;
     }
 
-    public Produto findByNome(String nome) throws Exception {
+    public Produto findByNome(String nome) throws Exception
+    {
         Produto objeto = new Produto();
         String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
                 + "   FROM PRODUTO "
@@ -101,19 +111,21 @@ public class ProdutoDAO {
                 + "   ORDER BY CPRODUTO "
                 + "   WHERE PRODUTO.NOME LIKE ?";
 
-        try {
+        try
+        {
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setString(1, "%" + nome + "%");
 
             ResultSet rs = p.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 objeto = new Produto();
                 objeto.setcProduto(rs.getInt("CPRODUTO"));
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao(rs.getString("DESCRICAO"));
-                objeto.setFoto(rs.getBytes("FOTO"));
+                objeto.setFoto(rs.getString("FOTO"));
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setPreco(rs.getDouble("PRECO"));
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
@@ -132,14 +144,16 @@ public class ProdutoDAO {
             rs.close();
             p.close();
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
 
         return objeto;
     }
 
-    public List<Produto> findAll() throws Exception {
+    public List<Produto> findAll() throws Exception
+    {
 
         List<Produto> list = new ArrayList<>();
         Produto objeto;
@@ -149,18 +163,20 @@ public class ProdutoDAO {
                 + "   INNER JOIN MARCA ON MARCA.CMARCA = PRODUTO.CMARCA "
                 + "   ORDER BY CPRODUTO";
 
-        try {
+        try
+        {
             PreparedStatement p = connection.prepareStatement(SQL);
 
             ResultSet rs = p.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 objeto = new Produto();
                 objeto.setcProduto(rs.getInt("CPRODUTO"));
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao(rs.getString("DESCRICAO"));
-                objeto.setFoto(rs.getBytes("FOTO"));
+                objeto.setFoto(rs.getString("FOTO"));
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setPreco(rs.getDouble("PRECO"));
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
@@ -181,19 +197,22 @@ public class ProdutoDAO {
             rs.close();
             p.close();
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
 
         return list;
     }
 
-    public Produto update() {
+    public Produto update()
+    {
         String SQL = "";
         return null;
     }
 
-    public Produto delete() {
+    public Produto delete()
+    {
         return null;
     }
 }

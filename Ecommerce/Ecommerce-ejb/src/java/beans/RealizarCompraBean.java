@@ -18,26 +18,35 @@ import model.PedidoItem;
  * @author Gabriel
  */
 @Stateless
-public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCompraBeanLocal {
+public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCompraBeanLocal
+{
 
-    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem) throws AppException {
+    @Override
+    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem) throws AppException
+    {
 
-        if (pedidoItem.getcProduto().getQtde() > 0) {
+        if (pedidoItem.getcProduto().getQtde() > 0)
+        {
 
-            try {
+            try
+            {
                 PedidoDAO pedidoDAO = new PedidoDAO();
                 pedidoDAO.inserirPedido(pedido);
 
                 PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
                 pedidoItemDAO.save(pedidoItem);
-            } catch (SQLException ex) {
+            } catch (SQLException ex)
+            {
                 throw new AppException("Ocorreu um erro! Contate o suporte!", ex);
-            } catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 throw new AppException("Ocorreu um erro! Contate o suporte!", ex);
             }
             return true;
-        } else {
+        } else
+        {
             return false;
         }
     }
+
 }
