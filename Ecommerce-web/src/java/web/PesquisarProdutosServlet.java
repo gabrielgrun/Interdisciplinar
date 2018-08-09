@@ -44,7 +44,7 @@ public class PesquisarProdutosServlet extends HttpServlet
         try (BufferedReader leitor = req.getReader())
         {
             jsonJs = leitor.lines().collect(Collectors.joining());
-            jsonJava = new JsonObject(mapper.writeValueAsString(bean.pesquisar(jsonJs)));
+            jsonJava = mapper.writeValueAsString(bean.pesquisar(jsonJs));
         } catch (AppException ex)
         {
             Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
