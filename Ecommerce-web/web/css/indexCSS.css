@@ -54,17 +54,16 @@ body{
     clear: both;
 }
 .aNav{
-    border-left: 2px solid #1340A4;
-    padding: .3% 2%;
-    color:  lightgray;
+    padding: .3% 1.9%;
+    color: lightgray;
     margin-right:  -.5%;
+    margin-left: 1px;
     transition: 0.6s;
 }
-.aNav.aNavPrim{
-    border: 0;
-}
-a.aNav:hover {
-    background-color: #2faaff;
+a.aNav:hover, a.aNavRod:hover {
+    background-color: #0625AB;
+    border: 1px solid aliceblue;
+    padding: .5% 1.9%;
 }
 .categoria{
     width: 17%;
@@ -98,12 +97,19 @@ a.aNav:hover {
     width: 60%;
     margin-left: .3%;
     margin-bottom: .2%;
-    }
+}
 .itemBox{
     width: 24%;
     float:  left;
     margin-right:  .7%;
     margin-bottom:  2%;
+    border:  1px solid black;
+    padding-bottom:  2%;
+    transition: .3s;
+}
+.itemBox:hover{
+    box-shadow: 0.2em 0.2em 0.7em 0.1em rgba(0,0,0,.6), 
+        -0.2em -0.2em 0.9em rgba(0,0,0,.6)
 }
 .imagemBox{
     width: 90%;
@@ -112,15 +118,13 @@ a.aNav:hover {
     margin-left:  4%;
     margin-top:  4%;
 }
-.Pitem{
-
-}
+.Pitem{text-align:  center;}
 .pagamentoBox{
     display: block;
+    margin-left:  10%;
+    color: gray;
 }
-.sifraoBox{
-    
-}
+.sifraoBox{margin-left: 9%;color:  #FF9F1C;}
 .precoItemBox{
     display: inline-block;
 }
@@ -140,7 +144,9 @@ a.aNav:hover {
     display:  block;
     margin-left:  6%;
 }
-.comprarItem{margin: 2% 0 5% 41%;}
+.comprarItem{
+    margin: 2% 0 5% 41%;
+}
 .carrinhoBoxDetail{
     width: 19%;
     float:  right;
@@ -155,7 +161,31 @@ a.aNav:hover {
 }
 .rodape{
     clear:both;
+    background-color: #06257c;
+    color: antiquewhite;
+    text-align:  center;
+    text-decoration:  none;
+    display:  inline-block;
+    width:  100%;
 }
 .pRodape{
 
+}
+.navRod{padding: .7% 0%;}
+.aNavRod{
+    text-decoration: none;
+    padding: .3% 1.9%;
+    color: lightgray;
+    background-color: #06257c;
+    margin-right: -.5%;
+    margin-left: 1px;
+    transition: 0.6s;
+}
+.impar{
+    border-left: 1px solid #1340A4;
+    border-right: 1px solid #1340A4;
+}
+.par{
+    border-left: 1px solid #06257c;
+    border-right: 1px solid #06257c;
 }

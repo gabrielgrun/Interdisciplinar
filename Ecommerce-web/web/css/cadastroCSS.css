@@ -1,0 +1,86 @@
+body{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 73.125rem;
+    min-width: 50rem;
+}
+.container{
+    margin: 0 auto;
+    max-width: 73.125rem;
+    min-width: 50rem;
+}
+.header{
+    width: 71%;
+    margin: 0 auto .4em;
+    height: 5em;
+}
+.logoHeader{
+    width: 35%;
+    margin: 1%;
+    float: left;
+}
+.caixaPesquisaHeader{
+    width: 44%;
+    top: 4%;
+    font-size: 100%;
+    margin-left: 1em;
+    float: left;
+    margin: 5% 0% 0% 3%;
+}
+.carrinhoHeader{
+    width: 6%;
+    float: right;
+    margin: 2% 3.5%;
+}
+.nav a{
+    text-decoration: none;
+}
+.nav{
+    padding:.7% 0% .7% 16.7%;
+    background-color: #06257C;
+    margin-bottom: .6%;
+    clear: both;
+}
+.aNav{
+    padding: .3% 1.9%;
+    color: lightgray;
+    margin-right:  -.5%;
+    margin-left: 1px;
+    transition: 0.6s;
+}
+a.aNav:hover, a.aNavRod:hover {
+    background-color: #0625AB;
+    border: 1px solid aliceblue;
+    padding: .5% 1.9%;
+}
+
+.rodape{
+    clear:both;
+    background-color: #06257c;
+    color: antiquewhite;
+    text-align:  center;
+    text-decoration:  none;
+    display:  inline-block;
+    width:  100%;
+}
+.pRodape{
+
+}
+.navRod{padding: .7% 0%;}
+.aNavRod{
+    text-decoration: none;
+    padding: .3% 1.9%;
+    color: lightgray;
+    background-color: #06257c;
+    margin-right: -.5%;
+    margin-left: 1px;
+    transition: 0.6s;
+}
+.impar{
+    border-left: 1px solid #1340A4;
+    border-right: 1px solid #1340A4;
+}
+.par{
+    border-left: 1px solid #06257c;
+    border-right: 1px solid #06257c;
+}
