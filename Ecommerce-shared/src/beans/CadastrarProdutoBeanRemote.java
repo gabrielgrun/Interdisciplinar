@@ -7,17 +7,15 @@ package beans;
 
 import exceptions.AppException;
 import javax.ejb.Remote;
-import model.Cliente;
-import model.Pedido;
-import model.PedidoItem;
+import model.Produto;
 
 /**
  *
  * @author Gabriel
  */
 @Remote
-public interface RealizarCompraBeanRemote
+public interface CadastrarProdutoBeanRemote
 {
 
-    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem, Cliente cliente) throws AppException;
+    public void cadastrarProduto(Produto produto) throws AppException;
 }

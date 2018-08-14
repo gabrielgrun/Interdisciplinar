@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import model.Cliente;
 import model.Pedido;
 import util.ConnectionUtil;
 
@@ -16,39 +17,47 @@ import util.ConnectionUtil;
  *
  * @author Gabriel
  */
-public class PedidoDAO {
+public class PedidoDAO
+{
 
     private Connection connection;
 
-    public PedidoDAO() throws Exception {
+    public PedidoDAO() throws Exception
+    {
         connection = ConnectionUtil.getConnection();
     }
 
-    public void inserirPedido(Pedido pedido) throws AppException {
-        try {
+    public void inserirPedido(Pedido pedido, Cliente cliente) throws AppException
+    {
+        try
+        {
             String SQL = "INSERT INTO PEDIDO(ENDERECO, BAIRRO, NUMERO, CEP, COMPLEMENTO, CPF, DATA, VALOR, UF, CIDADE) VALUES(?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setString(1, pedido.getEndereco());
-            p.setString(2, pedido.getBairro());
-            p.setInt(3, pedido.getNumero());
-            p.setString(4, pedido.getCep());
-            p.setString(5, pedido.getComplemento());
-            p.setString(6, pedido.getCpf());
+            p.setString(1, cliente.getEndereco());
+            p.setString(2, cliente.getBairro());
+            p.setInt(3, cliente.getNumero());
+            p.setString(4, cliente.getCep());
+            p.setString(5, cliente.getComplemento());
+            p.setString(6, cliente.getCpf());
             p.setDate(7, pedido.getData());
             p.setDouble(8, pedido.getValor());
-            p.setString(9, pedido.getUf());
-            p.setString(10, pedido.getCidade());
+            p.setString(9, cliente.getUf());
+            p.setString(10, cliente.getCidade());
             p.execute();
             p.close();
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("a", ex);
         }
     }
 
-    public List<Pedido> criarRel() throws AppException {
+    public List<Pedido> criarRel() throws AppException
+    {
         Pedido objeto;
+        Cliente cliente;
         List<Pedido> list = new ArrayList<>();
-        try {
+        try
+        {
             String SQL = "SELECT PEDIDOITEM.CPEDIDO"
                     + "   FROM PEDIDOITEM"
                     + "   INNER JOIN PEDIDO ON (PEDIDO.CPEDIDO = PEDIDOITEM.CPEDIDO)";
@@ -57,38 +66,45 @@ public class PedidoDAO {
 
             ResultSet rs = p.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 objeto = new Pedido();
+                cliente = new Cliente();
                 objeto.setcPedido(rs.getInt("CPEDIDO"));
-                objeto.setEndereco(rs.getString("ENDERECO"));
-                objeto.setBairro(rs.getString("BAIRRO"));
-                objeto.setNumero(rs.getInt("NUMERO"));
-                objeto.setCep(rs.getString("CEP"));
-                objeto.setComplemento(rs.getString("COMPLEMENTO"));
-                objeto.setCpf(rs.getString("CPF"));
+                cliente.setEndereco(rs.getString("ENDERECO"));
+                cliente.setBairro(rs.getString("BAIRRO"));
+                cliente.setNumero(rs.getInt("NUMERO"));
+                cliente.setCep(rs.getString("CEP"));
+                cliente.setComplemento(rs.getString("COMPLEMENTO"));
+                cliente.setCpf(rs.getString("CPF"));
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 objeto.setData(rs.getDate("DATA"));
                 objeto.setValor(rs.getDouble("VALOR"));
-                objeto.setUf(rs.getString("UF"));
-                objeto.setCidade(rs.getString("CIDADE"));
+                cliente.setUf(rs.getString("UF"));
+                cliente.setCidade(rs.getString("CIDADE"));
 
+                objeto.setCliente(cliente);
                 list.add(objeto);
             }
             rs.close();
             p.close();
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
 
         return list;
     }
 
-    public List<Pedido> criarRel(Date datai, Date dataf) throws AppException {
+    public List<Pedido> criarRel(Date datai, Date dataf) throws AppException
+    {
         Pedido objeto;
+        Cliente cliente;
         List<Pedido> list = new ArrayList<>();
-        try {
+        try
+        {
             String SQL = "SELECT PEDIDOITEM.CPEDIDO"
                     + "   FROM PEDIDOITEM"
                     + "   INNER JOIN PEDIDO ON (PEDIDO.CPEDIDO = PEDIDOITEM.CPEDIDO)"
@@ -100,28 +116,32 @@ public class PedidoDAO {
 
             ResultSet rs = p.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 objeto = new Pedido();
+                cliente = new Cliente();
                 objeto.setcPedido(rs.getInt("CPEDIDO"));
-                objeto.setEndereco(rs.getString("ENDERECO"));
-                objeto.setBairro(rs.getString("BAIRRO"));
-                objeto.setNumero(rs.getInt("NUMERO"));
-                objeto.setCep(rs.getString("CEP"));
-                objeto.setComplemento(rs.getString("COMPLEMENTO"));
-                objeto.setCpf(rs.getString("CPF"));
+                cliente.setEndereco(rs.getString("ENDERECO"));
+                cliente.setBairro(rs.getString("BAIRRO"));
+                cliente.setNumero(rs.getInt("NUMERO"));
+                cliente.setCep(rs.getString("CEP"));
+                cliente.setComplemento(rs.getString("COMPLEMENTO"));
+                cliente.setCpf(rs.getString("CPF"));
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 objeto.setData(rs.getDate("DATA"));
                 objeto.setValor(rs.getDouble("VALOR"));
-                objeto.setUf(rs.getString("UF"));
-                objeto.setCidade(rs.getString("CIDADE"));
+                cliente.setUf(rs.getString("UF"));
+                cliente.setCidade(rs.getString("CIDADE"));
 
+                objeto.setCliente(cliente);
                 list.add(objeto);
             }
             rs.close();
             p.close();
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
 

@@ -5,18 +5,14 @@
  */
 package beans;
 
-import exceptions.AppException;
-import javax.ejb.Remote;
-import model.Produto;
+import javax.ejb.Local;
 
 /**
  *
  * @author Gabriel
  */
-@Remote
-public interface PesquisarProdutosBeanRemote
+@Local
+public interface CadastrarProdutoBeanLocal
 {
-
-    public Produto pesquisar(String jsonJs) throws AppException;
 
 }
