@@ -10,6 +10,7 @@
             <included-library dirs="200">file.reference.jackson-annotations-2.9.6.jar</included-library>
             <included-library dirs="200">file.reference.jackson-core-2.9.6.jar</included-library>
             <included-library dirs="200">file.reference.jackson-databind-2.9.6.jar</included-library>
+            <included-library dirs="200">file.reference.jaybird-full-3.0.3.jar-1</included-library>
             <source-roots>
                 <root id="src.dir" name="Pacotes de Códigos-fonte"/>
             </source-roots>

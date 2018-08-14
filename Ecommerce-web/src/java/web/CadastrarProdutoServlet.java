@@ -5,13 +5,14 @@
  */
 package web;
 
-import beans.RealizarCompraBeanRemote;
+import beans.CadastrarProdutoBeanRemote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.AppException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -20,19 +21,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cliente;
-import model.Pedido;
-import model.PedidoItem;
+import model.Produto;
 
 /**
  *
  * @author Gabriel
  */
-public class RealizarCompraServlet extends HttpServlet
+public class CadastrarProdutoServlet extends HttpServlet
 {
 
     @EJB
-    private RealizarCompraBeanRemote bean;
+    private CadastrarProdutoBeanRemote bean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -48,40 +47,28 @@ public class RealizarCompraServlet extends HttpServlet
 
         ObjectMapper mapper = new ObjectMapper();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        mapper.setDateFormat(formatter);
-        Pedido pedido = mapper.readValue(content, Pedido.class);
-        PedidoItem pedidoItem = mapper.readValue(content, PedidoItem.class);
-        Cliente cliente = mapper.readValue(content, Cliente.class);
+        Produto produto = mapper.readValue(content, Produto.class);
 
-        boolean ret;
         String retorno = "";
 
         try
         {
-            ret = bean.realizarCompra(pedido, pedidoItem, cliente);
-
-            if (ret)
-            {
-                retorno = "Compra realizada com sucesso!";
-            } else
-            {
-                retorno = "Compra cancelada!";
-            }
+            bean.cadastrarProduto(produto);
+            retorno = "Produto cadastrado com sucesso!";
         } catch (AppException ex)
         {
-            retorno = ex.getMessage();
+            try
+            {
+                throw new AppException("Erro ao cadastrar produto! Por favor, contate o suporte!", ex);
+            } catch (AppException ex1)
+            {
+                Logger.getLogger(CadastrarProdutoServlet.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
 
         JsonObject json = Json.createObjectBuilder().add("message", retorno).build();
 
         saida.write(json.toString());
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-    {
-
     }
 
 }

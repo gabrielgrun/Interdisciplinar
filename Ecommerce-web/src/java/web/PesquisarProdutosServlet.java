@@ -37,9 +37,9 @@ public class PesquisarProdutosServlet extends HttpServlet
     {
         resp.setContentType("application/json");
         PrintWriter saida = resp.getWriter();
-        JsonObject jsonJava = null;
 
         String jsonJs = "";
+        String jsonJava = "";
         ObjectMapper mapper = new ObjectMapper();
         try (BufferedReader leitor = req.getReader())
         {
@@ -50,6 +50,8 @@ public class PesquisarProdutosServlet extends HttpServlet
             Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        jsonJava = Json.createObjectBuilder().add("json", jsonJava.toString()).build();
+        JsonObject jasao = Json.createObjectBuilder().add("json", jsonJava).build();
+
+        saida.write(jasao.toString());
     }
 }

@@ -10,6 +10,7 @@ import dao.PedidoItemDAO;
 import exceptions.AppException;
 import java.sql.SQLException;
 import javax.ejb.Stateless;
+import model.Cliente;
 import model.Pedido;
 import model.PedidoItem;
 
@@ -22,7 +23,7 @@ public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCom
 {
 
     @Override
-    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem) throws AppException
+    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem, Cliente cliente) throws AppException
     {
 
         if (pedidoItem.getcProduto().getQtde() > 0)
@@ -31,7 +32,7 @@ public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCom
             try
             {
                 PedidoDAO pedidoDAO = new PedidoDAO();
-                pedidoDAO.inserirPedido(pedido);
+                pedidoDAO.inserirPedido(pedido, cliente);
 
                 PedidoItemDAO pedidoItemDAO = new PedidoItemDAO();
                 pedidoItemDAO.save(pedidoItem);

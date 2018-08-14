@@ -8,6 +8,10 @@
         <servlet-name>PesquisarProdutosServlet</servlet-name>
         <servlet-class>web.PesquisarProdutosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastrarProdutoServlet</servlet-name>
+        <servlet-class>web.CadastrarProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RealizarCompraServlet</servlet-name>
         <url-pattern>/realizar-compra</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>PesquisarProdutosServlet</servlet-name>
         <url-pattern>/pesquisar-produtos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarProdutoServlet</servlet-name>
+        <url-pattern>/cadastrar-produto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
