@@ -802,7 +802,6 @@ exists or setup the property manually. For example like this:
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
         <copyfiles files="${reference.Ecommerce-shared.jar}" todir="${build.classes.dir}"/>
-        <copyfiles files="${file.reference.jaybird-full-3.0.3.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-annotations-2.9.6.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-databind-2.9.6.jar}" todir="${build.classes.dir}"/>
@@ -810,24 +809,21 @@ exists or setup the property manually. For example like this:
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${reference.Ecommerce-shared.jar}" property="manifest.reference.Ecommerce-shared.jar"/>
-        <basename file="${file.reference.jaybird-full-3.0.3.jar}" property="manifest.file.reference.jaybird-full-3.0.3.jar"/>
         <basename file="${file.reference.jackson-annotations-2.9.6.jar}" property="manifest.file.reference.jackson-annotations-2.9.6.jar"/>
         <basename file="${file.reference.jackson-core-2.9.6.jar}" property="manifest.file.reference.jackson-core-2.9.6.jar"/>
         <basename file="${file.reference.jackson-databind-2.9.6.jar}" property="manifest.file.reference.jackson-databind-2.9.6.jar"/>
         <basename file="${file.reference.jaybird-full-3.0.3.jar-1}" property="manifest.file.reference.jaybird-full-3.0.3.jar-1"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.Ecommerce-shared.jar}"/>
-            <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar}"/>
-            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.jackson-annotations-2.9.6.jar}"/>
-            <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar}"/>
-            <attribute name="jar-5-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar}"/>
-            <attribute name="jar-6-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar-1}"/>
+            <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.jackson-annotations-2.9.6.jar}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar}"/>
+            <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar}"/>
+            <attribute name="jar-5-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar-1}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.Ecommerce-shared.jar}" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${file.reference.jaybird-full-3.0.3.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-annotations-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-databind-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>

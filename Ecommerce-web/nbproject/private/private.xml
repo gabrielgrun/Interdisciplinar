@@ -9,8 +9,9 @@
             <file>file:/D:/Técnico/INTERDISCIPLINAR/Interdisciplinar/Ecommerce-web/web/css/indexCSS.css</file>
         </group>
         <group>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/js/cadastrarProduto.js</file>
             <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/js/indexJS.js</file>
-            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/RealizarCompraServlet.java</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/CadastrarProdutoServlet.java</file>
             <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/PesquisarProdutosServlet.java</file>
         </group>
     </open-files>
