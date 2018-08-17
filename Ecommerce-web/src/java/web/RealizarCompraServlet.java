@@ -78,10 +78,4 @@ public class RealizarCompraServlet extends HttpServlet
         saida.write(json.toString());
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-    {
-
-    }
-
 }
