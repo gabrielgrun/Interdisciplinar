@@ -1,7 +1,9 @@
+/* global http */
+
 var URL = "http://localhost:8080/ecommerce-web/cadastrar-produto";
 
 function reqHttpGet(url){
-    http.open('GET', url)
+    http.open('GET', url);
     http.send();
 
     JSON.parse(http.responseText);
