@@ -10,6 +10,9 @@
             <included-library dirs="200">file.reference.jackson-core-2.9.6.jar</included-library>
             <included-library dirs="200">file.reference.jackson-databind-2.9.6.jar</included-library>
             <included-library dirs="200">file.reference.jaybird-full-3.0.3.jar-1</included-library>
+            <included-library dirs="200">libs.Comet-GlassFish-v3.classpath</included-library>
+            <included-library dirs="200">libs.javaee-endorsed-api-7.0_2.classpath</included-library>
+            <included-library dirs="200">libs.javaee-api-6.0.classpath</included-library>
             <source-roots>
                 <root id="src.dir" name="Pacotes de Códigos-fonte"/>
             </source-roots>

@@ -24,13 +24,16 @@
                 <a class="aNav par" href="#">Moda</a>
             </nav>
             <div class="formulario">
-                <form>
-                    <input type="text" id="nome" class="nome" placeholder="Nome do Produto" required>
-                    <input type="number" id="preco" class="preco" required>
-                    <input type="number" id="qtde" class="quant" required>
-                    <input type="number" id="pomocao" class="promocao">
-                    <input type="text" id="descricao" class="descricao" required>
-                    <input type="file" name="foto" id="foto" accept="image/*">                    
+                <form class="form">
+                    <span>Nome:</span> <input type="text" id="nome" class="nome" placeholder="Nome do Produto" required>
+                    <span>Preço:</span> <input type="number" id="preco" class="preco" required>
+                    <span>Quantidade:</span> <input type="number" id="qtde" class="quant" required>
+                    <span>Promoção:</span> <input type="number" id="pomocao" class="promocao">
+                    <span>Descrição:</span> <input type="textarea" id="descricao" class="descricao" required>
+                    <span>Marca:</span> <input type="number" name="marca" id="marca" class="marca" required>                    
+                    <span>Categoria:</span> <input type="number" name="categoria" id="cate" class="cate" required>
+                    <span>Foto:</span> <input type="file" name="foto" id="foto" class="foto" accept="image/*">                    
+                    <input type="submit" name="enviar" id="enviar" class="enviar">
                 </form>
             </div>
             <div class="rodape">

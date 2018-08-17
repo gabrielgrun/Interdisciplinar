@@ -722,16 +722,6 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         </macrodef>
     </target>
     <target name="-init-taskdefs">
-        <fail unless="libs.CopyLibs.classpath">
-The libs.CopyLibs.classpath property is not set up.
-This property must point to 
-org-netbeans-modules-java-j2seproject-copylibstask.jar file which is part
-of NetBeans IDE installation and is usually located at 
-&lt;netbeans_installation&gt;/java&lt;version&gt;/ant/extra folder.
-Either open the project in the IDE and make sure CopyLibs library
-exists or setup the property manually. For example like this:
- ant -Dlibs.CopyLibs.classpath=a/path/to/org-netbeans-modules-java-j2seproject-copylibstask.jar
-                </fail>
         <taskdef classpath="${libs.CopyLibs.classpath}" resource="org/netbeans/modules/java/j2seproject/copylibstask/antlib.xml"/>
     </target>
     <target name="-init-ap-cmdline-properties">
@@ -806,9 +796,58 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-databind-2.9.6.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jaybird-full-3.0.3.jar-1}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javaee-endorsed-api-6.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.JAXB-ENDORSED.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javaee-endorsed-api-7.0.classpath}" todir="${build.classes.dir}"/>
         <copyfiles files="${libs.Comet-GlassFish-v3.classpath}" todir="${build.classes.dir}"/>
         <copyfiles files="${libs.javaee-endorsed-api-7.0_2.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javaee-api-7.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.Java-EE-GlassFish-v3-Prelude.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javaee-web-api-6.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.beans-binding.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.DataBindingME.classpath}" todir="${build.classes.dir}"/>
         <copyfiles files="${libs.javaee-api-6.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javaee-web-api-7.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jsf20.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.DataBindingME-PIM.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.DataBindingME-SVG.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.metro.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.MySQLDriver.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jpa2-persistence.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.eclipselinkmodelgen.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jaxws21.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.JAVADB_DRIVER_LABEL.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jpa20-persistence.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.struts.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.JWSAntTasks.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javac-api.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.EclipseLink-GlassFish-v3.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.groovy-all.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.hibernate4-persistence.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.spring-framework400.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.j2me_common_ant.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.hamcrest.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.swing-layout.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jstl.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.spring-framework300.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.spring-webmvc4.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jsp-compiler.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.restlib.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.testng.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.junit_4.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.primefaces.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.CopyLibs.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jaxb.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.restapi.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.spring-webmvc3.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jsf12.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.hibernate4-support.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.hibernate4-persistencemodelgen.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jsp-compilation-syscp.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.absolutelayout.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.jsp-compilation.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.PostgreSQLDriver.classpath}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${reference.Ecommerce-shared.jar}" property="manifest.reference.Ecommerce-shared.jar"/>
@@ -816,19 +855,117 @@ exists or setup the property manually. For example like this:
         <basename file="${file.reference.jackson-core-2.9.6.jar}" property="manifest.file.reference.jackson-core-2.9.6.jar"/>
         <basename file="${file.reference.jackson-databind-2.9.6.jar}" property="manifest.file.reference.jackson-databind-2.9.6.jar"/>
         <basename file="${file.reference.jaybird-full-3.0.3.jar-1}" property="manifest.file.reference.jaybird-full-3.0.3.jar-1"/>
+        <basename file="${libs.javaee-endorsed-api-6.0.classpath}" property="manifest.libs.javaee-endorsed-api-6.0.classpath"/>
+        <basename file="${libs.JAXB-ENDORSED.classpath}" property="manifest.libs.JAXB-ENDORSED.classpath"/>
+        <basename file="${libs.javaee-endorsed-api-7.0.classpath}" property="manifest.libs.javaee-endorsed-api-7.0.classpath"/>
         <basename file="${libs.Comet-GlassFish-v3.classpath}" property="manifest.libs.Comet-GlassFish-v3.classpath"/>
         <basename file="${libs.javaee-endorsed-api-7.0_2.classpath}" property="manifest.libs.javaee-endorsed-api-7.0_2.classpath"/>
+        <basename file="${libs.javaee-api-7.0.classpath}" property="manifest.libs.javaee-api-7.0.classpath"/>
+        <basename file="${libs.Java-EE-GlassFish-v3-Prelude.classpath}" property="manifest.libs.Java-EE-GlassFish-v3-Prelude.classpath"/>
+        <basename file="${libs.javaee-web-api-6.0.classpath}" property="manifest.libs.javaee-web-api-6.0.classpath"/>
+        <basename file="${libs.beans-binding.classpath}" property="manifest.libs.beans-binding.classpath"/>
+        <basename file="${libs.DataBindingME.classpath}" property="manifest.libs.DataBindingME.classpath"/>
         <basename file="${libs.javaee-api-6.0.classpath}" property="manifest.libs.javaee-api-6.0.classpath"/>
+        <basename file="${libs.javaee-web-api-7.0.classpath}" property="manifest.libs.javaee-web-api-7.0.classpath"/>
+        <basename file="${libs.jsf20.classpath}" property="manifest.libs.jsf20.classpath"/>
+        <basename file="${libs.eclipselink.classpath}" property="manifest.libs.eclipselink.classpath"/>
+        <basename file="${libs.DataBindingME-PIM.classpath}" property="manifest.libs.DataBindingME-PIM.classpath"/>
+        <basename file="${libs.DataBindingME-SVG.classpath}" property="manifest.libs.DataBindingME-SVG.classpath"/>
+        <basename file="${libs.metro.classpath}" property="manifest.libs.metro.classpath"/>
+        <basename file="${libs.MySQLDriver.classpath}" property="manifest.libs.MySQLDriver.classpath"/>
+        <basename file="${libs.jpa2-persistence.classpath}" property="manifest.libs.jpa2-persistence.classpath"/>
+        <basename file="${libs.eclipselinkmodelgen.classpath}" property="manifest.libs.eclipselinkmodelgen.classpath"/>
+        <basename file="${libs.jaxws21.classpath}" property="manifest.libs.jaxws21.classpath"/>
+        <basename file="${libs.JAVADB_DRIVER_LABEL.classpath}" property="manifest.libs.JAVADB_DRIVER_LABEL.classpath"/>
+        <basename file="${libs.jpa20-persistence.classpath}" property="manifest.libs.jpa20-persistence.classpath"/>
+        <basename file="${libs.struts.classpath}" property="manifest.libs.struts.classpath"/>
+        <basename file="${libs.JWSAntTasks.classpath}" property="manifest.libs.JWSAntTasks.classpath"/>
+        <basename file="${libs.javac-api.classpath}" property="manifest.libs.javac-api.classpath"/>
+        <basename file="${libs.EclipseLink-GlassFish-v3.classpath}" property="manifest.libs.EclipseLink-GlassFish-v3.classpath"/>
+        <basename file="${libs.groovy-all.classpath}" property="manifest.libs.groovy-all.classpath"/>
+        <basename file="${libs.hibernate4-persistence.classpath}" property="manifest.libs.hibernate4-persistence.classpath"/>
+        <basename file="${libs.spring-framework400.classpath}" property="manifest.libs.spring-framework400.classpath"/>
+        <basename file="${libs.j2me_common_ant.classpath}" property="manifest.libs.j2me_common_ant.classpath"/>
+        <basename file="${libs.hamcrest.classpath}" property="manifest.libs.hamcrest.classpath"/>
+        <basename file="${libs.swing-layout.classpath}" property="manifest.libs.swing-layout.classpath"/>
+        <basename file="${libs.jstl.classpath}" property="manifest.libs.jstl.classpath"/>
+        <basename file="${libs.spring-framework300.classpath}" property="manifest.libs.spring-framework300.classpath"/>
+        <basename file="${libs.spring-webmvc4.0.classpath}" property="manifest.libs.spring-webmvc4.0.classpath"/>
+        <basename file="${libs.jsp-compiler.classpath}" property="manifest.libs.jsp-compiler.classpath"/>
+        <basename file="${libs.restlib.classpath}" property="manifest.libs.restlib.classpath"/>
+        <basename file="${libs.testng.classpath}" property="manifest.libs.testng.classpath"/>
+        <basename file="${libs.junit_4.classpath}" property="manifest.libs.junit_4.classpath"/>
+        <basename file="${libs.primefaces.classpath}" property="manifest.libs.primefaces.classpath"/>
+        <basename file="${libs.CopyLibs.classpath}" property="manifest.libs.CopyLibs.classpath"/>
+        <basename file="${libs.jaxb.classpath}" property="manifest.libs.jaxb.classpath"/>
+        <basename file="${libs.restapi.classpath}" property="manifest.libs.restapi.classpath"/>
+        <basename file="${libs.spring-webmvc3.0.classpath}" property="manifest.libs.spring-webmvc3.0.classpath"/>
+        <basename file="${libs.jsf12.classpath}" property="manifest.libs.jsf12.classpath"/>
+        <basename file="${libs.hibernate4-support.classpath}" property="manifest.libs.hibernate4-support.classpath"/>
+        <basename file="${libs.hibernate4-persistencemodelgen.classpath}" property="manifest.libs.hibernate4-persistencemodelgen.classpath"/>
+        <basename file="${libs.jsp-compilation-syscp.classpath}" property="manifest.libs.jsp-compilation-syscp.classpath"/>
+        <basename file="${libs.absolutelayout.classpath}" property="manifest.libs.absolutelayout.classpath"/>
+        <basename file="${libs.jsp-compilation.classpath}" property="manifest.libs.jsp-compilation.classpath"/>
+        <basename file="${libs.PostgreSQLDriver.classpath}" property="manifest.libs.PostgreSQLDriver.classpath"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 jar-8 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 jar-8 jar-9 jar-10 jar-11 jar-12 jar-13 jar-14 jar-15 jar-16 jar-17 jar-18 jar-19 jar-20 jar-21 jar-22 jar-23 jar-24 jar-25 jar-26 jar-27 jar-28 jar-29 jar-30 jar-31 jar-32 jar-33 jar-34 jar-35 jar-36 jar-37 jar-38 jar-39 jar-40 jar-41 jar-42 jar-43 jar-44 jar-45 jar-46 jar-47 jar-48 jar-49 jar-50 jar-51 jar-52 jar-53 jar-54 jar-55 jar-56 jar-57 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.Ecommerce-shared.jar}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.jackson-annotations-2.9.6.jar}"/>
             <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar}"/>
             <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar}"/>
             <attribute name="jar-5-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar-1}"/>
-            <attribute name="jar-6-Extension-Name" value="${manifest.libs.Comet-GlassFish-v3.classpath}"/>
-            <attribute name="jar-7-Extension-Name" value="${manifest.libs.javaee-endorsed-api-7.0_2.classpath}"/>
-            <attribute name="jar-8-Extension-Name" value="${manifest.libs.javaee-api-6.0.classpath}"/>
+            <attribute name="jar-6-Extension-Name" value="${manifest.libs.javaee-endorsed-api-6.0.classpath}"/>
+            <attribute name="jar-7-Extension-Name" value="${manifest.libs.JAXB-ENDORSED.classpath}"/>
+            <attribute name="jar-8-Extension-Name" value="${manifest.libs.javaee-endorsed-api-7.0.classpath}"/>
+            <attribute name="jar-9-Extension-Name" value="${manifest.libs.Comet-GlassFish-v3.classpath}"/>
+            <attribute name="jar-10-Extension-Name" value="${manifest.libs.javaee-endorsed-api-7.0_2.classpath}"/>
+            <attribute name="jar-11-Extension-Name" value="${manifest.libs.javaee-api-7.0.classpath}"/>
+            <attribute name="jar-12-Extension-Name" value="${manifest.libs.Java-EE-GlassFish-v3-Prelude.classpath}"/>
+            <attribute name="jar-13-Extension-Name" value="${manifest.libs.javaee-web-api-6.0.classpath}"/>
+            <attribute name="jar-14-Extension-Name" value="${manifest.libs.beans-binding.classpath}"/>
+            <attribute name="jar-15-Extension-Name" value="${manifest.libs.DataBindingME.classpath}"/>
+            <attribute name="jar-16-Extension-Name" value="${manifest.libs.javaee-api-6.0.classpath}"/>
+            <attribute name="jar-17-Extension-Name" value="${manifest.libs.javaee-web-api-7.0.classpath}"/>
+            <attribute name="jar-18-Extension-Name" value="${manifest.libs.jsf20.classpath}"/>
+            <attribute name="jar-19-Extension-Name" value="${manifest.libs.eclipselink.classpath}"/>
+            <attribute name="jar-20-Extension-Name" value="${manifest.libs.DataBindingME-PIM.classpath}"/>
+            <attribute name="jar-21-Extension-Name" value="${manifest.libs.DataBindingME-SVG.classpath}"/>
+            <attribute name="jar-22-Extension-Name" value="${manifest.libs.metro.classpath}"/>
+            <attribute name="jar-23-Extension-Name" value="${manifest.libs.MySQLDriver.classpath}"/>
+            <attribute name="jar-24-Extension-Name" value="${manifest.libs.jpa2-persistence.classpath}"/>
+            <attribute name="jar-25-Extension-Name" value="${manifest.libs.eclipselinkmodelgen.classpath}"/>
+            <attribute name="jar-26-Extension-Name" value="${manifest.libs.jaxws21.classpath}"/>
+            <attribute name="jar-27-Extension-Name" value="${manifest.libs.JAVADB_DRIVER_LABEL.classpath}"/>
+            <attribute name="jar-28-Extension-Name" value="${manifest.libs.jpa20-persistence.classpath}"/>
+            <attribute name="jar-29-Extension-Name" value="${manifest.libs.struts.classpath}"/>
+            <attribute name="jar-30-Extension-Name" value="${manifest.libs.JWSAntTasks.classpath}"/>
+            <attribute name="jar-31-Extension-Name" value="${manifest.libs.javac-api.classpath}"/>
+            <attribute name="jar-32-Extension-Name" value="${manifest.libs.EclipseLink-GlassFish-v3.classpath}"/>
+            <attribute name="jar-33-Extension-Name" value="${manifest.libs.groovy-all.classpath}"/>
+            <attribute name="jar-34-Extension-Name" value="${manifest.libs.hibernate4-persistence.classpath}"/>
+            <attribute name="jar-35-Extension-Name" value="${manifest.libs.spring-framework400.classpath}"/>
+            <attribute name="jar-36-Extension-Name" value="${manifest.libs.j2me_common_ant.classpath}"/>
+            <attribute name="jar-37-Extension-Name" value="${manifest.libs.hamcrest.classpath}"/>
+            <attribute name="jar-38-Extension-Name" value="${manifest.libs.swing-layout.classpath}"/>
+            <attribute name="jar-39-Extension-Name" value="${manifest.libs.jstl.classpath}"/>
+            <attribute name="jar-40-Extension-Name" value="${manifest.libs.spring-framework300.classpath}"/>
+            <attribute name="jar-41-Extension-Name" value="${manifest.libs.spring-webmvc4.0.classpath}"/>
+            <attribute name="jar-42-Extension-Name" value="${manifest.libs.jsp-compiler.classpath}"/>
+            <attribute name="jar-43-Extension-Name" value="${manifest.libs.restlib.classpath}"/>
+            <attribute name="jar-44-Extension-Name" value="${manifest.libs.testng.classpath}"/>
+            <attribute name="jar-45-Extension-Name" value="${manifest.libs.junit_4.classpath}"/>
+            <attribute name="jar-46-Extension-Name" value="${manifest.libs.primefaces.classpath}"/>
+            <attribute name="jar-47-Extension-Name" value="${manifest.libs.CopyLibs.classpath}"/>
+            <attribute name="jar-48-Extension-Name" value="${manifest.libs.jaxb.classpath}"/>
+            <attribute name="jar-49-Extension-Name" value="${manifest.libs.restapi.classpath}"/>
+            <attribute name="jar-50-Extension-Name" value="${manifest.libs.spring-webmvc3.0.classpath}"/>
+            <attribute name="jar-51-Extension-Name" value="${manifest.libs.jsf12.classpath}"/>
+            <attribute name="jar-52-Extension-Name" value="${manifest.libs.hibernate4-support.classpath}"/>
+            <attribute name="jar-53-Extension-Name" value="${manifest.libs.hibernate4-persistencemodelgen.classpath}"/>
+            <attribute name="jar-54-Extension-Name" value="${manifest.libs.jsp-compilation-syscp.classpath}"/>
+            <attribute name="jar-55-Extension-Name" value="${manifest.libs.absolutelayout.classpath}"/>
+            <attribute name="jar-56-Extension-Name" value="${manifest.libs.jsp-compilation.classpath}"/>
+            <attribute name="jar-57-Extension-Name" value="${manifest.libs.PostgreSQLDriver.classpath}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
@@ -837,9 +974,58 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-databind-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jaybird-full-3.0.3.jar-1}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javaee-endorsed-api-6.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.JAXB-ENDORSED.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javaee-endorsed-api-7.0.classpath}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.Comet-GlassFish-v3.classpath}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.javaee-endorsed-api-7.0_2.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javaee-api-7.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.Java-EE-GlassFish-v3-Prelude.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javaee-web-api-6.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.beans-binding.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.DataBindingME.classpath}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.javaee-api-6.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javaee-web-api-7.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jsf20.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.DataBindingME-PIM.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.DataBindingME-SVG.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.metro.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.MySQLDriver.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jpa2-persistence.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.eclipselinkmodelgen.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jaxws21.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.JAVADB_DRIVER_LABEL.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jpa20-persistence.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.struts.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.JWSAntTasks.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javac-api.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.EclipseLink-GlassFish-v3.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.groovy-all.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.hibernate4-persistence.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.spring-framework400.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.j2me_common_ant.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.hamcrest.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.swing-layout.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jstl.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.spring-framework300.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.spring-webmvc4.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jsp-compiler.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.restlib.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.testng.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.junit_4.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.primefaces.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.CopyLibs.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jaxb.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.restapi.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.spring-webmvc3.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jsf12.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.hibernate4-support.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.hibernate4-persistencemodelgen.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jsp-compilation-syscp.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.absolutelayout.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.jsp-compilation.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.PostgreSQLDriver.classpath}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
