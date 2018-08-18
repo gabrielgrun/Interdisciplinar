@@ -1,30 +1,32 @@
 /* global http */
 
-var URL = "http://localhost:8080/ecommerce-web/cadastrar-produto";
+var URL = "http://localhost:8080/Ecommerce-web/cadastrar-produto";
+var http = new XMLHttpRequest();
 
-function reqHttpGet(url){
+function reqHttpGet(url) {
     http.open('GET', url);
     http.send();
 
     JSON.parse(http.responseText);
 }
 
-function reqHttpPost(url, data){
-    http.open('POST', url);
-    JSON.stringify(data);
-    http.send(data);
-
-    JSON.parse(http.responseText);
+function reqHttpPost(data) {
+    http.open('POST', URL, false);
+    http.setRequestHeader("Content-type", "application/json");
+    http.send(JSON.stringify(data));
+    return console.log(http.responseText);
 }
 
-function cadastrarProduto(){
-    var produto = {};
-    var categoria = {};
-    var marca = {};
-    
-    categoria.nome = document.querySelector('#categoria').value;
+document.querySelector('#enviar').addEventListener('click', cadastrarProduto);
 
-    marca.nome = document.querySelector('#marca').value;
+function cadastrarProduto() {
+    var produto = {};
+    var cCategoria = {};
+    var cMarca = {};
+
+    cCategoria.cCategoria = document.querySelector('#categoria').value;
+
+    cMarca.cMarca = document.querySelector('#marca').value;
 
     produto.nome = document.querySelector('#nome').value;
     produto.descricao = document.querySelector('#descricao').value;
@@ -32,8 +34,27 @@ function cadastrarProduto(){
     produto.qtde = document.querySelector('#qtde').value;
     produto.preco = document.querySelector('#preco').value;
     produto.promocao = document.querySelector('#promocao').value;
-    produto.categoria = categoria;
-    produto.marca = marca;
+    produto.cCategoria = cCategoria;
+    produto.cMarca = cMarca;
 
-    reqHttpPost(URL, produto);
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function ()
+    {
+        if (this.readyState === 4 && this.status === 200) {
+            parseJson(this.responseText);
+        }
+        if (this.readyState === 4 && this.status !== 200) {
+            document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+        }
+        if (this.readyState === 3) {
+            document.getElementById("result").innerHTML = "Aguarde...";
+        }
+    };
+
+    reqHttpPost(produto);
+}
+
+function parseJson(jsonData) {
+    var obj = JSON.parse(jsonData);
+    document.getElementById("result").innerHTML = "" + obj.message;
 }
