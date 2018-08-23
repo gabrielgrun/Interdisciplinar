@@ -20,9 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cliente;
-import model.Pedido;
-import model.PedidoItem;
+import dto.ClienteDTO;
+import dto.PedidoDTO;
+import dto.PedidoItemDTO;
 
 /**
  *
@@ -50,9 +50,9 @@ public class RealizarCompraServlet extends HttpServlet
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         mapper.setDateFormat(formatter);
-        Pedido pedido = mapper.readValue(content, Pedido.class);
-        PedidoItem pedidoItem = mapper.readValue(content, PedidoItem.class);
-        Cliente cliente = mapper.readValue(content, Cliente.class);
+        PedidoDTO pedido = mapper.readValue(content, PedidoDTO.class);
+        PedidoItemDTO pedidoItem = mapper.readValue(content, PedidoItemDTO.class);
+        ClienteDTO cliente = mapper.readValue(content, ClienteDTO.class);
 
         boolean ret;
         String retorno = "";

@@ -21,7 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Produto;
+import dto.ProdutoDTO;
 
 /**
  *
@@ -47,7 +47,7 @@ public class CadastrarProdutoServlet extends HttpServlet
 
         ObjectMapper mapper = new ObjectMapper();
 
-        Produto produto = mapper.readValue(content, Produto.class);
+        ProdutoDTO produto = mapper.readValue(content, ProdutoDTO.class);
 
         String retorno = "";
 

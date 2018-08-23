@@ -18,9 +18,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import model.Categoria;
-import model.Marca;
-import model.Produto;
+import dto.CategoriaDTO;
+import dto.MarcaDTO;
+import dto.ProdutoDTO;
 import util.ConnectionUtil;
 
 /**
@@ -45,7 +45,7 @@ public class PesquisarProdutosBean implements PesquisarProdutosBeanRemote, Pesqu
     }
 
     @Override
-    public Produto pesquisar(String jsonJs) throws AppException
+    public ProdutoDTO pesquisar(String jsonJs) throws AppException
     {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> map = new HashMap<String, Object>();
@@ -77,7 +77,7 @@ public class PesquisarProdutosBean implements PesquisarProdutosBeanRemote, Pesqu
                 throw new AppException("Erro no Json", ex);
             }
         }
-        Produto objeto = new Produto();
+        ProdutoDTO objeto = new ProdutoDTO();
         String SQL = "SELECT *"
                 + "  FROM PRODUTO "
                 + "  WHERE PRODUTO.CPRODUTO > -1"
@@ -97,7 +97,7 @@ public class PesquisarProdutosBean implements PesquisarProdutosBeanRemote, Pesqu
             while (rs.next())
             {
 
-                objeto = new Produto();
+                objeto = new ProdutoDTO();
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao("DESCRICAO");
                 objeto.setFoto(rs.getString("FOTO"));
@@ -105,10 +105,10 @@ public class PesquisarProdutosBean implements PesquisarProdutosBeanRemote, Pesqu
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
                 objeto.setQtde(rs.getInt("QTDE"));
 
-                Marca marca = new Marca();
-                Categoria categoria = new Categoria();
+                MarcaDTO marca = new MarcaDTO();
+                CategoriaDTO categoria = new CategoriaDTO();
 
-                categoria = new Categoria();
+                categoria = new CategoriaDTO();
                 categoria.setcCategoria(rs.getInt("CCATEGORIA"));
                 categoria.setNome(rs.getString("NOME"));
 

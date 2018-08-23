@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
+import dto.CategoriaDTO;
 import util.ConnectionUtil;
 
 /**
@@ -23,9 +23,9 @@ public class CategoriaDAO
         connection = ConnectionUtil.getConnection();
     }
 
-    public Categoria findById(int id) throws Exception
+    public CategoriaDTO findById(int id) throws Exception
     {
-        Categoria objeto = new Categoria();
+        CategoriaDTO objeto = new CategoriaDTO();
         String SQL = "SELECT * "
                 + "   FROM CATEGORIA"
                 + "   WHERE CATEGORIA.CCATEGORIA = ?";
@@ -40,7 +40,7 @@ public class CategoriaDAO
             while (rs.next())
             {
 
-                objeto = new Categoria();
+                objeto = new CategoriaDTO();
                 objeto.setcCategoria(rs.getInt("CCATEGORIA"));
                 objeto.setNome(rs.getString("NOME"));
             }
@@ -55,11 +55,11 @@ public class CategoriaDAO
         return objeto;
     }
 
-    public List<Categoria> findAll() throws Exception
+    public List<CategoriaDTO> findAll() throws Exception
     {
 
-        List<Categoria> list = new ArrayList<>();
-        Categoria objeto;
+        List<CategoriaDTO> list = new ArrayList<>();
+        CategoriaDTO objeto;
         String SQL = "SELECT *"
                 + "   FROM CATEGORIA "
                 + "   ORDER BY CCATEGORIA";
@@ -73,7 +73,7 @@ public class CategoriaDAO
             while (rs.next())
             {
 
-                objeto = new Categoria();
+                objeto = new CategoriaDTO();
                 objeto.setcCategoria(rs.getInt("CCATEGORIA"));
                 objeto.setNome(rs.getString("NOME"));
 

@@ -1,25 +1,26 @@
-package model;
+package dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *
  * @author Gabriel
  */
-public class Pedido
+public class PedidoDTO implements Serializable
 {
 
     private int cPedido;
     private Date data;
     private double valor;
-    private Cliente cliente;
+    private ClienteDTO cliente;
 
-    public Cliente getCliente()
+    public ClienteDTO getCliente()
     {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente)
+    public void setCliente(ClienteDTO cliente)
     {
         this.cliente = cliente;
     }

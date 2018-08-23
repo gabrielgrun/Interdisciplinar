@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package dto;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Gabriel
  */
-public class Cliente
+public class ClienteDTO implements Serializable
 {
 
     private String endereco;

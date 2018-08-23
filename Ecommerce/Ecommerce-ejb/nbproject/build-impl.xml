@@ -791,7 +791,6 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
     </target>
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
-        <copyfiles files="${reference.Ecommerce-shared.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-databind-2.9.6.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jaybird-full-3.0.3.jar-1}" todir="${build.classes.dir}"/>
@@ -802,9 +801,9 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <copyfiles files="${file.reference.jaybird-full-3.0.3.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-annotations-2.9.6.jar-1}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar-1}" todir="${build.classes.dir}"/>
+        <copyfiles files="${reference.Ecommerce-shared.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
-        <basename file="${reference.Ecommerce-shared.jar}" property="manifest.reference.Ecommerce-shared.jar"/>
         <basename file="${file.reference.jackson-core-2.9.6.jar}" property="manifest.file.reference.jackson-core-2.9.6.jar"/>
         <basename file="${file.reference.jackson-databind-2.9.6.jar}" property="manifest.file.reference.jackson-databind-2.9.6.jar"/>
         <basename file="${file.reference.jaybird-full-3.0.3.jar-1}" property="manifest.file.reference.jaybird-full-3.0.3.jar-1"/>
@@ -815,23 +814,23 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <basename file="${file.reference.jaybird-full-3.0.3.jar}" property="manifest.file.reference.jaybird-full-3.0.3.jar"/>
         <basename file="${file.reference.jackson-annotations-2.9.6.jar-1}" property="manifest.file.reference.jackson-annotations-2.9.6.jar-1"/>
         <basename file="${file.reference.jackson-core-2.9.6.jar-1}" property="manifest.file.reference.jackson-core-2.9.6.jar-1"/>
+        <basename file="${reference.Ecommerce-shared.jar}" property="manifest.reference.Ecommerce-shared.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
             <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 jar-8 jar-9 jar-10 jar-11 "/>
-            <attribute name="jar-1-Extension-Name" value="${manifest.reference.Ecommerce-shared.jar}"/>
-            <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar}"/>
-            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar}"/>
-            <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar-1}"/>
-            <attribute name="jar-5-Extension-Name" value="${manifest.libs.Comet-GlassFish-v3.classpath}"/>
-            <attribute name="jar-6-Extension-Name" value="${manifest.libs.javaee-endorsed-api-7.0_2.classpath}"/>
-            <attribute name="jar-7-Extension-Name" value="${manifest.libs.javaee-api-6.0.classpath}"/>
-            <attribute name="jar-8-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar-1}"/>
-            <attribute name="jar-9-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar}"/>
-            <attribute name="jar-10-Extension-Name" value="${manifest.file.reference.jackson-annotations-2.9.6.jar-1}"/>
-            <attribute name="jar-11-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar-1}"/>
+            <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar}"/>
+            <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar-1}"/>
+            <attribute name="jar-4-Extension-Name" value="${manifest.libs.Comet-GlassFish-v3.classpath}"/>
+            <attribute name="jar-5-Extension-Name" value="${manifest.libs.javaee-endorsed-api-7.0_2.classpath}"/>
+            <attribute name="jar-6-Extension-Name" value="${manifest.libs.javaee-api-6.0.classpath}"/>
+            <attribute name="jar-7-Extension-Name" value="${manifest.file.reference.jackson-databind-2.9.6.jar-1}"/>
+            <attribute name="jar-8-Extension-Name" value="${manifest.file.reference.jaybird-full-3.0.3.jar}"/>
+            <attribute name="jar-9-Extension-Name" value="${manifest.file.reference.jackson-annotations-2.9.6.jar-1}"/>
+            <attribute name="jar-10-Extension-Name" value="${manifest.file.reference.jackson-core-2.9.6.jar-1}"/>
+            <attribute name="jar-11-Extension-Name" value="${manifest.reference.Ecommerce-shared.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
-        <copyfiles files="${reference.Ecommerce-shared.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-databind-2.9.6.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jaybird-full-3.0.3.jar-1}" todir="${dist.ear.dir}/lib"/>
@@ -842,6 +841,7 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <copyfiles files="${file.reference.jaybird-full-3.0.3.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-annotations-2.9.6.jar-1}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jackson-core-2.9.6.jar-1}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.Ecommerce-shared.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">

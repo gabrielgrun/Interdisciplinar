@@ -7,7 +7,7 @@ package beans;
 
 import exceptions.AppException;
 import javax.ejb.Remote;
-import model.Produto;
+import dto.ProdutoDTO;
 
 /**
  *
@@ -17,6 +17,6 @@ import model.Produto;
 public interface PesquisarProdutosBeanRemote
 {
 
-    public Produto pesquisar(String jsonJs) throws AppException;
+    public ProdutoDTO pesquisar(String jsonJs) throws AppException;
 
 }

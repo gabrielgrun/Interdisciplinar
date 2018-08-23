@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import model.Cliente;
+import dto.ClienteDTO;
 import util.ConnectionUtil;
 
 /**
@@ -25,7 +25,7 @@ public class ClienteDAO
         connection = ConnectionUtil.getConnection();
     }
 
-    public void inserirCliente(Cliente cliente) throws AppException
+    public void inserirCliente(ClienteDTO cliente) throws AppException
     {
         try
         {
@@ -47,9 +47,9 @@ public class ClienteDAO
         }
     }
 
-    public Cliente findById(int id) throws Exception
+    public ClienteDTO findById(int id) throws Exception
     {
-        Cliente objeto = new Cliente();
+        ClienteDTO objeto = new ClienteDTO();
         String SQL = "SELECT *"
                 + "   FROM CLIENTE"
                 + "   WHERE CLIENTE.CCLIENTE = ?";
@@ -64,7 +64,7 @@ public class ClienteDAO
             while (rs.next())
             {
 
-                objeto = new Cliente();
+                objeto = new ClienteDTO();
                 objeto.setEndereco(rs.getString("ENDERECO"));
                 objeto.setBairro(rs.getString("BAIRRO"));
                 objeto.setNumero(rs.getInt("NUMERO"));
@@ -86,11 +86,11 @@ public class ClienteDAO
         return objeto;
     }
 
-    public List<Cliente> findAll() throws Exception
+    public List<ClienteDTO> findAll() throws Exception
     {
 
-        List<Cliente> list = new ArrayList<>();
-        Cliente objeto;
+        List<ClienteDTO> list = new ArrayList<>();
+        ClienteDTO objeto;
         String SQL = "SELECT CLIENTE"
                 + "   FROM CLIENTE "
                 + "   ORDER BY CCLIENTE";
@@ -104,7 +104,7 @@ public class ClienteDAO
             while (rs.next())
             {
 
-                objeto = new Cliente();
+                objeto = new ClienteDTO();
                 objeto.setEndereco(rs.getString("ENDERECO"));
                 objeto.setBairro(rs.getString("BAIRRO"));
                 objeto.setNumero(rs.getInt("NUMERO"));

@@ -10,9 +10,9 @@ import dao.PedidoItemDAO;
 import exceptions.AppException;
 import java.sql.SQLException;
 import javax.ejb.Stateless;
-import model.Cliente;
-import model.Pedido;
-import model.PedidoItem;
+import dto.ClienteDTO;
+import dto.PedidoDTO;
+import dto.PedidoItemDTO;
 
 /**
  *
@@ -23,7 +23,7 @@ public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCom
 {
 
     @Override
-    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem, Cliente cliente) throws AppException
+    public boolean realizarCompra(PedidoDTO pedido, PedidoItemDTO pedidoItem, ClienteDTO cliente) throws AppException
     {
 
         if (pedidoItem.getcProduto().getQtde() > 0)

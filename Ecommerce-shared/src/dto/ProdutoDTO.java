@@ -1,12 +1,16 @@
-package model;
+package dto;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
 /**
  *
  * @author Gabriel
  */
-public class Produto
+public class ProdutoDTO implements Serializable
 {
 
+    @JsonIgnore
     private int cProduto;
     private String nome;
     private String descricao;
@@ -14,8 +18,8 @@ public class Produto
     private int qtde;
     private double preco;
     private double promocao;
-    private Categoria cCategoria;
-    private Marca cMarca;
+    private CategoriaDTO cCategoria;
+    private MarcaDTO cMarca;
 
     public String getDescricao()
     {
@@ -87,22 +91,22 @@ public class Produto
         this.promocao = promocao;
     }
 
-    public Categoria getcCategoria()
+    public CategoriaDTO getcCategoria()
     {
         return cCategoria;
     }
 
-    public void setcCategoria(Categoria cCategoria)
+    public void setcCategoria(CategoriaDTO cCategoria)
     {
         this.cCategoria = cCategoria;
     }
 
-    public Marca getcMarca()
+    public MarcaDTO getcMarca()
     {
         return cMarca;
     }
 
-    public void setcMarca(Marca cMarca)
+    public void setcMarca(MarcaDTO cMarca)
     {
         this.cMarca = cMarca;
     }

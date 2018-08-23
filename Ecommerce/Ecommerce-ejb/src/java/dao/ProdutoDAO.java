@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
-import model.Marca;
-import model.Produto;
+import dto.CategoriaDTO;
+import dto.MarcaDTO;
+import dto.ProdutoDTO;
 import util.ConnectionUtil;
 
 /**
@@ -26,7 +26,7 @@ public class ProdutoDAO
         connection = ConnectionUtil.getConnection();
     }
 
-    public void save(Produto produto) throws AppException
+    public void save(ProdutoDTO produto) throws AppException
     {
 
         try
@@ -50,9 +50,9 @@ public class ProdutoDAO
         }
     }
 
-    public Produto findById(int id) throws Exception
+    public ProdutoDTO findById(int id) throws Exception
     {
-        Produto objeto = new Produto();
+        ProdutoDTO objeto = new ProdutoDTO();
         String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
                 + "   FROM PRODUTO "
                 + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
@@ -70,7 +70,7 @@ public class ProdutoDAO
             while (rs.next())
             {
 
-                objeto = new Produto();
+                objeto = new ProdutoDTO();
                 objeto.setcProduto(rs.getInt("CPRODUTO"));
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao(rs.getString("DESCRICAO"));
@@ -79,11 +79,11 @@ public class ProdutoDAO
                 objeto.setPreco(rs.getDouble("PRECO"));
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
 
-                Categoria categoria = new Categoria();
+                CategoriaDTO categoria = new CategoriaDTO();
                 categoria.setcCategoria(rs.getInt("CCATEGORIA"));
                 categoria.setNome(rs.getString("NOME"));
 
-                Marca marca = new Marca();
+                MarcaDTO marca = new MarcaDTO();
                 marca.setcMarca(rs.getInt("CMARCA"));
                 marca.setNome(rs.getString("NOME"));
 
@@ -101,9 +101,9 @@ public class ProdutoDAO
         return objeto;
     }
 
-    public Produto findByNome(String nome) throws Exception
+    public ProdutoDTO findByNome(String nome) throws Exception
     {
-        Produto objeto = new Produto();
+        ProdutoDTO objeto = new ProdutoDTO();
         String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
                 + "   FROM PRODUTO "
                 + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
@@ -121,7 +121,7 @@ public class ProdutoDAO
             while (rs.next())
             {
 
-                objeto = new Produto();
+                objeto = new ProdutoDTO();
                 objeto.setcProduto(rs.getInt("CPRODUTO"));
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao(rs.getString("DESCRICAO"));
@@ -130,11 +130,11 @@ public class ProdutoDAO
                 objeto.setPreco(rs.getDouble("PRECO"));
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
 
-                Categoria categoria = new Categoria();
+                CategoriaDTO categoria = new CategoriaDTO();
                 categoria.setcCategoria(rs.getInt("CCATEGORIA"));
                 categoria.setNome(rs.getString("NOME"));
 
-                Marca marca = new Marca();
+                MarcaDTO marca = new MarcaDTO();
                 marca.setcMarca(rs.getInt("CMARCA"));
                 marca.setNome(rs.getString("NOME"));
 
@@ -152,11 +152,11 @@ public class ProdutoDAO
         return objeto;
     }
 
-    public List<Produto> findAll() throws Exception
+    public List<ProdutoDTO> findAll() throws Exception
     {
 
-        List<Produto> list = new ArrayList<>();
-        Produto objeto;
+        List<ProdutoDTO> list = new ArrayList<>();
+        ProdutoDTO objeto;
         String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
                 + "   FROM PRODUTO "
                 + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
@@ -172,7 +172,7 @@ public class ProdutoDAO
             while (rs.next())
             {
 
-                objeto = new Produto();
+                objeto = new ProdutoDTO();
                 objeto.setcProduto(rs.getInt("CPRODUTO"));
                 objeto.setNome(rs.getString("NOME"));
                 objeto.setDescricao(rs.getString("DESCRICAO"));
@@ -181,11 +181,11 @@ public class ProdutoDAO
                 objeto.setPreco(rs.getDouble("PRECO"));
                 objeto.setPromocao(rs.getDouble("PROMOCAO"));
 
-                Categoria categoria = new Categoria();
+                CategoriaDTO categoria = new CategoriaDTO();
                 categoria.setcCategoria(rs.getInt("CCATEGORIA"));
                 categoria.setNome(rs.getString("NOME"));
 
-                Marca marca = new Marca();
+                MarcaDTO marca = new MarcaDTO();
                 marca.setcMarca(rs.getInt("CMARCA"));
                 marca.setNome(rs.getString("NOME"));
 
@@ -205,13 +205,13 @@ public class ProdutoDAO
         return list;
     }
 
-    public Produto update()
+    public ProdutoDTO update()
     {
         String SQL = "";
         return null;
     }
 
-    public Produto delete()
+    public ProdutoDTO delete()
     {
         return null;
     }

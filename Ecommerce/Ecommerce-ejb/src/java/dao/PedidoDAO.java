@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import model.Cliente;
-import model.Pedido;
+import dto.ClienteDTO;
+import dto.PedidoDTO;
 import util.ConnectionUtil;
 
 /**
@@ -27,7 +27,7 @@ public class PedidoDAO
         connection = ConnectionUtil.getConnection();
     }
 
-    public void inserirPedido(Pedido pedido, Cliente cliente) throws AppException
+    public void inserirPedido(PedidoDTO pedido, ClienteDTO cliente) throws AppException
     {
         try
         {
@@ -51,11 +51,11 @@ public class PedidoDAO
         }
     }
 
-    public List<Pedido> criarRel() throws AppException
+    public List<PedidoDTO> criarRel() throws AppException
     {
-        Pedido objeto;
-        Cliente cliente;
-        List<Pedido> list = new ArrayList<>();
+        PedidoDTO objeto;
+        ClienteDTO cliente;
+        List<PedidoDTO> list = new ArrayList<>();
         try
         {
             String SQL = "SELECT PEDIDOITEM.CPEDIDO"
@@ -69,8 +69,8 @@ public class PedidoDAO
             while (rs.next())
             {
 
-                objeto = new Pedido();
-                cliente = new Cliente();
+                objeto = new PedidoDTO();
+                cliente = new ClienteDTO();
                 objeto.setcPedido(rs.getInt("CPEDIDO"));
                 cliente.setEndereco(rs.getString("ENDERECO"));
                 cliente.setBairro(rs.getString("BAIRRO"));
@@ -98,11 +98,11 @@ public class PedidoDAO
         return list;
     }
 
-    public List<Pedido> criarRel(Date datai, Date dataf) throws AppException
+    public List<PedidoDTO> criarRel(Date datai, Date dataf) throws AppException
     {
-        Pedido objeto;
-        Cliente cliente;
-        List<Pedido> list = new ArrayList<>();
+        PedidoDTO objeto;
+        ClienteDTO cliente;
+        List<PedidoDTO> list = new ArrayList<>();
         try
         {
             String SQL = "SELECT PEDIDOITEM.CPEDIDO"
@@ -119,8 +119,8 @@ public class PedidoDAO
             while (rs.next())
             {
 
-                objeto = new Pedido();
-                cliente = new Cliente();
+                objeto = new PedidoDTO();
+                cliente = new ClienteDTO();
                 objeto.setcPedido(rs.getInt("CPEDIDO"));
                 cliente.setEndereco(rs.getString("ENDERECO"));
                 cliente.setBairro(rs.getString("BAIRRO"));

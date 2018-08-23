@@ -1,13 +1,20 @@
-package model;
+package dto;
+
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
 /**
  *
  * @author Gabriel
  */
-public class Categoria
+public class CategoriaDTO implements Serializable
 {
 
+    @JsonIdentityReference(alwaysAsId = true)
     private int cCategoria;
+    @JsonIgnore
+
     private String nome;
 
     public int getcCategoria()

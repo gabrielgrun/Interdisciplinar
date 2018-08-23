@@ -7,9 +7,9 @@ package beans;
 
 import exceptions.AppException;
 import javax.ejb.Remote;
-import model.Cliente;
-import model.Pedido;
-import model.PedidoItem;
+import dto.ClienteDTO;
+import dto.PedidoDTO;
+import dto.PedidoItemDTO;
 
 /**
  *
@@ -19,5 +19,5 @@ import model.PedidoItem;
 public interface RealizarCompraBeanRemote
 {
 
-    public boolean realizarCompra(Pedido pedido, PedidoItem pedidoItem, Cliente cliente) throws AppException;
+    public boolean realizarCompra(PedidoDTO pedido, PedidoItemDTO pedidoItem, ClienteDTO cliente) throws AppException;
 }

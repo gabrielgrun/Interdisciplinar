@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author Gabriel
@@ -7,6 +9,7 @@ package model;
 public class Produto
 {
 
+    @JsonIgnore
     private int cProduto;
     private String nome;
     private String descricao;

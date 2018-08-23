@@ -9,7 +9,7 @@ import dao.ProdutoDAO;
 import exceptions.AppException;
 import java.sql.SQLException;
 import javax.ejb.Stateless;
-import model.Produto;
+import dto.ProdutoDTO;
 
 /**
  *
@@ -20,7 +20,7 @@ public class CadastrarProdutoBean implements CadastrarProdutoBeanRemote, Cadastr
 {
 
     @Override
-    public void cadastrarProduto(Produto produto) throws AppException
+    public void cadastrarProduto(ProdutoDTO produto) throws AppException
     {
         try
         {

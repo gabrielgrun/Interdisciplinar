@@ -7,7 +7,7 @@ package beans;
 
 import exceptions.AppException;
 import javax.ejb.Remote;
-import model.Produto;
+import dto.ProdutoDTO;
 
 /**
  *
@@ -17,5 +17,5 @@ import model.Produto;
 public interface CadastrarProdutoBeanRemote
 {
 
-    public void cadastrarProduto(Produto produto) throws AppException;
+    public void cadastrarProduto(ProdutoDTO produto) throws AppException;
 }

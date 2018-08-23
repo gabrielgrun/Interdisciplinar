@@ -4,23 +4,27 @@ import exceptions.AppException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import model.PedidoItem;
+import dto.PedidoItemDTO;
 import util.ConnectionUtil;
 
 /**
  *
  * @author Gabriel
  */
-public class PedidoItemDAO {
+public class PedidoItemDAO
+{
 
     private Connection connection;
 
-    public PedidoItemDAO() throws Exception {
+    public PedidoItemDAO() throws Exception
+    {
         connection = ConnectionUtil.getConnection();
     }
 
-    public void save(PedidoItem pedidoItem) throws AppException {
-        try {
+    public void save(PedidoItemDTO pedidoItem) throws AppException
+    {
+        try
+        {
             String SQL = "INSERT INTO PEDIDOITEM (QTDE, VALOR, CPRODUTO, CPEDIDO) VALUES(?, ?, ?, ?)";
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, pedidoItem.getQtde());
@@ -29,7 +33,8 @@ public class PedidoItemDAO {
             p.setInt(4, pedidoItem.getcPedido().getcPedido());
             p.execute();
             p.close();
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             throw new AppException("Ocorreu um erro ao inserir. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
     }
