@@ -108,7 +108,6 @@ public class PesquisarProdutosBean implements PesquisarProdutosBeanRemote, Pesqu
                 MarcaDTO marca = new MarcaDTO();
                 CategoriaDTO categoria = new CategoriaDTO();
 
-                categoria = new CategoriaDTO();
                 categoria.setcCategoria(rs.getInt("CCATEGORIA"));
                 categoria.setNome(rs.getString("NOME"));
 

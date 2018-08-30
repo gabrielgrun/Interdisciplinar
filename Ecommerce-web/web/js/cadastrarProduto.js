@@ -14,7 +14,7 @@ function reqHttpPost(data) {
     http.open('POST', URL, false);
     http.setRequestHeader("Content-type", "application/json");
     http.send(JSON.stringify(data));
-    return console.log(http.responseText);
+    return parseJson(http.responseText);
 }
 
 document.querySelector('#enviar').addEventListener('click', cadastrarProduto);

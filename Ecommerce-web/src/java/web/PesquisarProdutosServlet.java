@@ -6,6 +6,7 @@
 package web;
 
 import beans.PesquisarProdutosBeanRemote;
+import beans.TrazProdutosBeanRemote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.AppException;
 import java.io.BufferedReader;
@@ -32,8 +33,11 @@ public class PesquisarProdutosServlet extends HttpServlet
     @EJB
     private PesquisarProdutosBeanRemote bean;
 
+    @EJB
+    private TrazProdutosBeanRemote bean2;
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         resp.setContentType("application/json");
         PrintWriter saida = resp.getWriter();
@@ -54,4 +58,27 @@ public class PesquisarProdutosServlet extends HttpServlet
 
         saida.write(jasao.toString());
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        resp.setContentType("application/json");
+        PrintWriter saida = resp.getWriter();
+
+        String produto;
+        try
+        {
+            ObjectMapper mapper = new ObjectMapper();
+
+            produto = mapper.writeValueAsString(bean2.listarProdutos());
+
+            saida.write(produto);
+
+        } catch (AppException ex)
+        {
+            Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }
