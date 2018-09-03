@@ -42,13 +42,13 @@ public class PesquisarProdutosServlet extends HttpServlet
         resp.setContentType("application/json");
         PrintWriter saida = resp.getWriter();
 
-        String jsonJs = "";
+        String nome = "";
         String jsonJava = "";
         ObjectMapper mapper = new ObjectMapper();
         try (BufferedReader leitor = req.getReader())
         {
-            jsonJs = leitor.lines().collect(Collectors.joining());
-            jsonJava = mapper.writeValueAsString(bean.pesquisar(jsonJs));
+            nome = leitor.lines().collect(Collectors.joining());
+            jsonJava = mapper.writeValueAsString(bean2.filtrarNome(nome));
         } catch (AppException ex)
         {
             Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);

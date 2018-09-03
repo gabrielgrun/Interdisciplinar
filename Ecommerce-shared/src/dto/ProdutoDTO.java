@@ -1,6 +1,5 @@
 package dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
 /**
@@ -10,7 +9,6 @@ import java.io.Serializable;
 public class ProdutoDTO implements Serializable
 {
 
-    @JsonIgnore
     private int cProduto;
     private String nome;
     private String descricao;

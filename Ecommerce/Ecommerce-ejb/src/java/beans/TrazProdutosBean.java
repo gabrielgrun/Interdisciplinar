@@ -36,4 +36,19 @@ public class TrazProdutosBean implements TrazProdutosBeanRemote, TrazProdutosBea
         }
         return produto;
     }
+
+    public ProdutoDTO filtrarNome(String nome) throws AppException
+    {
+        ProdutoDTO produto;
+        try
+        {
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            produto = produtoDAO.findByNome(nome);
+        } catch (Exception ex)
+        {
+            Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AppException("Não foi possível retornar os produtos!", ex);
+        }
+        return produto;
+    }
 }

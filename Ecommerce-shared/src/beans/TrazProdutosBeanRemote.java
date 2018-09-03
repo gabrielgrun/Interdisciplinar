@@ -19,4 +19,6 @@ public interface TrazProdutosBeanRemote
 {
 
     public List<ProdutoDTO> listarProdutos() throws AppException;
+
+    public ProdutoDTO filtrarNome(String nome) throws AppException;
 }

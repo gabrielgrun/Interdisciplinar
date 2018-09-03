@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class ClienteDTO implements Serializable
 {
 
+    private int cCliente;
     private String endereco;
     private String bairro;
     private int numero;
