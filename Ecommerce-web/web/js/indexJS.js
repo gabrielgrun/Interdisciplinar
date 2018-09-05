@@ -1,7 +1,6 @@
 /* global http, formData */
 
 var URL = "http://localhost:8080/Ecommerce-web/pesquisar-produtos";
-pesquisaNome();
 
 function reqHttpGet() {
     var http = new XMLHttpRequest();
@@ -83,7 +82,7 @@ function constroiProd(jasao) {
     }
 
     function chamaCarrinho() {
-        var carrinho = document.querySelectorAll('i');
+        var carrinho = document.querySelectorAll('.addCarrinhoItemBox');
 
         for (var i = 0; i < carrinho.length; i++) {
             carrinho[i].addEventListener('click', adicionaCarrinho);
@@ -129,16 +128,17 @@ function adicionaCarrinho(e) {
 
 }
 
+pesquisaNome();
+
 function pesquisaNome() {
-    var nome = document.querySelector('.caixaPesquisaHeader').value;
-    document.querySelector('.caixaPesquisaHeader').addEventListener('keydown', reqHttpPost(nome));
+    document.querySelector('.caixaPesquisaHeader').addEventListener('blur', reqHttpPost);
 }
 
-function reqHttpPost(data) {
+function reqHttpPost(e) {
     var http = new XMLHttpRequest();
     http.open('POST', URL, false);
     http.setRequestHeader("Content-type", "application/json");
-    http.send(JSON.stringify(data));
+    http.send(JSON.stringify(e.target.value));
     return console.log(http.responseText);
 }
 

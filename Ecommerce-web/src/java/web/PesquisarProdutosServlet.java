@@ -42,7 +42,7 @@ public class PesquisarProdutosServlet extends HttpServlet
         resp.setContentType("application/json");
         PrintWriter saida = resp.getWriter();
 
-        String nome = "";
+        String nome;
         String jsonJava = "";
         ObjectMapper mapper = new ObjectMapper();
         try (BufferedReader leitor = req.getReader())

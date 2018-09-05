@@ -108,13 +108,12 @@ public class ProdutoDAO
                 + "   FROM PRODUTO "
                 + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
                 + "   INNER JOIN MARCA ON MARCA.CMARCA = PRODUTO.CMARCA "
-                + "   ORDER BY CPRODUTO "
-                + "   WHERE PRODUTO.NOME LIKE ?";
+                + "   WHERE PRODUTO.NOME LIKE '%" + nome + "%'"
+                + "   ORDER BY PRODUTO.CPRODUTO ";
 
         try
         {
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setString(1, "%" + nome + "%");
 
             ResultSet rs = p.executeQuery();
 
