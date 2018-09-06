@@ -1,10 +1,8 @@
+html{
+    font: 16px/100% Arial, Verdana;
+}
 body{
     width: 100%;
-    margin: 0 auto;
-    max-width: 73.125rem;
-    min-width: 50rem;
-}
-.container{
     margin: 0 auto;
     max-width: 73.125rem;
     min-width: 50rem;
@@ -16,7 +14,7 @@ body{
 }
 .logoHeader{
     width: 35%;
-    margin: 1%;
+    margin-top: 3%;
     float: left;
 }
 .caixaPesquisaHeader{
@@ -24,63 +22,60 @@ body{
     top: 4%;
     font-size: 100%;
     margin-left: 1em;
+    padding-left:  3.5%;
     float: left;
     margin: 5% 0% 0% 3%;
 }
-.carrinhoHeader{
-    width: 6%;
-    float: right;
-    margin: 2% 3.5%;
-}
-.nav a{
-    text-decoration: none;
+.colorInfinite{
+    background-color: #06257C;
+    width: 100%;
+    position: relative;
 }
 .nav{
     padding:.7% 0% .7% 16.7%;
-    background-color: #06257C;
     margin-bottom: .6%;
     clear: both;
 }
-.aNav{
-    padding: .3% 1.9%;
-    color: lightgray;
-    margin-right:  -.5%;
-    margin-left: 1px;
+.nav a{
+    text-decoration: none;
+    color: #fff;
+    padding: .5% 1.9%;
     transition: 0.6s;
+    border-left: 1px solid #06257c;
+    border-right: 1px solid #06257c;
+    margin-left: -0.6%;
+    margin-right: 0.5%;
 }
-a.aNav:hover, a.aNavRod:hover {
+.nav a:hover{
     background-color: #0625AB;
-    border: 1px solid aliceblue;
+    border: 1px solid #0516c8;
     padding: .5% 1.9%;
 }
+.geraRelatorio{
+    float: right;
+    margin-top: 4%;
+    width: 11.3%;
+    text-align: center;
+    background-color: #0625ab;
+    color: white;
+    padding: 0.6% 0% 0.6% 0%;
+}
 .form{
-    
+    width: 35%;
+    margin: 0 auto;
 }
-.nome{
-
+.foto{float: right;margin-top: -4.4%;}
+.enviar{
+    margin:  3% 0% 4% 6%;
+    clear: both;
+    float: left;
 }
-.preco{
-
+.form span{
+    display:  inline-block;
+    width: 22.5%;
+    margin-left:  7%;
+    margin-top:  5%;
 }
-.quant{
-
-}
-.promocao{
-
-}
-.descricao{
-
-}
-.marca{
-
-}
-.cate{
-
-}
-.foto{
-
-}
-
 .rodape{
     clear:both;
     background-color: #06257c;
@@ -90,24 +85,15 @@ a.aNav:hover, a.aNavRod:hover {
     display:  inline-block;
     width:  100%;
 }
-.pRodape{
+.rodape p {
+    font-family: 'Amatic SC', cursive;
+    font-size: 5em;
+    margin: 0.7em;
+}
+.rodape span{
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.5em;
+    display: inline-block;
+    margin-bottom: 0.7%;
+}
 
-}
-.navRod{padding: .7% 0%;}
-.aNavRod{
-    text-decoration: none;
-    padding: .3% 1.9%;
-    color: lightgray;
-    background-color: #06257c;
-    margin-right: -.5%;
-    margin-left: 1px;
-    transition: 0.6s;
-}
-.impar{
-    border-left: 1px solid #1340A4;
-    border-right: 1px solid #1340A4;
-}
-.par{
-    border-left: 1px solid #06257c;
-    border-right: 1px solid #06257c;
-}

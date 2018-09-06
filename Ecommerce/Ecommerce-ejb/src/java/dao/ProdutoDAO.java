@@ -101,9 +101,10 @@ public class ProdutoDAO
         return objeto;
     }
 
-    public ProdutoDTO findByNome(String nome) throws Exception
+    public List<ProdutoDTO> findByNome(String nome) throws Exception
     {
         ProdutoDTO objeto = new ProdutoDTO();
+        List<ProdutoDTO> list = new ArrayList<>();
         String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
                 + "   FROM PRODUTO "
                 + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
@@ -139,6 +140,8 @@ public class ProdutoDAO
 
                 objeto.setcCategoria(categoria);
                 objeto.setcMarca(marca);
+
+                list.add(objeto);
             }
             rs.close();
             p.close();
@@ -148,7 +151,7 @@ public class ProdutoDAO
             throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
         }
 
-        return objeto;
+        return list;
     }
 
     public List<ProdutoDTO> findAll() throws Exception

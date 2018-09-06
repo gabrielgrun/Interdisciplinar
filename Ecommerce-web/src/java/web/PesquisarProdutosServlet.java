@@ -16,8 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,15 +46,14 @@ public class PesquisarProdutosServlet extends HttpServlet
         try (BufferedReader leitor = req.getReader())
         {
             nome = leitor.lines().collect(Collectors.joining());
+            nome = nome.replaceAll("\"", "");
             jsonJava = mapper.writeValueAsString(bean2.filtrarNome(nome));
         } catch (AppException ex)
         {
             Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        JsonObject jasao = Json.createObjectBuilder().add("json", jsonJava).build();
-
-        saida.write(jasao.toString());
+        saida.write(jsonJava);
     }
 
     @Override
@@ -65,14 +62,15 @@ public class PesquisarProdutosServlet extends HttpServlet
         resp.setContentType("application/json");
         PrintWriter saida = resp.getWriter();
 
-        String produto;
+        String produto, categoria;
         try
         {
             ObjectMapper mapper = new ObjectMapper();
 
             produto = mapper.writeValueAsString(bean2.listarProdutos());
+            categoria = mapper.writeValueAsString(bean2.listarCategorias());
 
-            saida.write(produto);
+            saida.write(produto + "#G#" + categoria);
 
         } catch (AppException ex)
         {

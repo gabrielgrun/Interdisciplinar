@@ -5,6 +5,7 @@
  */
 package beans;
 
+import dto.CategoriaDTO;
 import dto.ProdutoDTO;
 import exceptions.AppException;
 import java.util.List;
@@ -20,5 +21,7 @@ public interface TrazProdutosBeanRemote
 
     public List<ProdutoDTO> listarProdutos() throws AppException;
 
-    public ProdutoDTO filtrarNome(String nome) throws AppException;
+    public List<ProdutoDTO> filtrarNome(String nome) throws AppException;
+
+    public List<CategoriaDTO> listarCategorias() throws AppException;
 }

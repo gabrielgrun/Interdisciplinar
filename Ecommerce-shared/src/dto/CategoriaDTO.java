@@ -1,7 +1,5 @@
 package dto;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
 /**
@@ -11,10 +9,7 @@ import java.io.Serializable;
 public class CategoriaDTO implements Serializable
 {
 
-    @JsonIdentityReference(alwaysAsId = true)
     private int cCategoria;
-    @JsonIgnore
-
     private String nome;
 
     public int getcCategoria()

@@ -2,55 +2,48 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>WA.F</title>
+        <title>AMARS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/cadastroCSS.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
-            <header class="header">
-                <img class="logoHeader" src="../img/Logo/1_Primary_logo_on_transparent_331x64.png" alt="LogoMarca" title="LogoMarca"/>
-                <input class="caixaPesquisaHeader" type="text" placeholder="Seja Bem Vindo! Precisa de Alguma Coisa???">
-                <span class="addCarrinho"><i class="fas fa-cart-plus"></i></span>
-            </header>
+        <header class="header">
+            <img class="logoHeader" src="../img/LogoAMARS2.png" alt="LogoMarca" title="LogoMarca"/>
+            <input class="caixaPesquisaHeader" type="search" placeholder="O que temos para hoje...">
+            <span class="geraRelatorio">Gerar Relatório</span>
+        </header>
+        <div class="colorInfinite">
             <nav class="nav">
-                <a class="aNav par" href="#">Home</a>
-                <a class="aNav impar" href="#">Eletrodomésticos</a>
-                <a class="aNav par" href="#">Notebooks</a>
-                <a class="aNav impar" href="#">Escritório</a>
-                <a class="aNav par" href="#">Camping</a>
-                <a class="aNav impar" href="#">Móveis</a>
-                <a class="aNav par" href="#">Moda</a>
+                <a href="../index.html"> Home </a>
+                <a href="#"> Eletrodomésticos </a>
+                <a href="#"> Notebooks </a>
+                <a href="#"> Escritório </a>
+                <a href="#"> Camping </a>
+                <a href="#"> Móveis </a>
+                <a href="#"> Moda </a>
             </nav>
-            <div id="result">
-                
-            </div>
-            <div class="formulario">
-                <form class="form" method="post"  action="/ecommerce-web/cadastrar-produto">
-                    <span>Nome:</span> <input type="text" name="nome" id="nome" class="nome" placeholder="Nome do Produto" required>
-                    <span>Preço:</span> <input type="number" name="preco" id="preco" class="preco" required>
-                    <span>Quantidade:</span> <input type="number" name="qtde" id="qtde" class="quant" required>
-                    <span>Promoção:</span> <input type="number" name="promocao" id="promocao" class="promocao">
-                    <span>Descrição:</span> <input type="textarea" name="descricao" id="descricao" class="descricao" required>
-                    <span>Marca:</span> <input type="number" name="marca" id="marca" class="marca" required>                    
-                    <span>Categoria:</span> <input type="number" name="categoria" id="categoria" class="cate" required>
-                    <span>Foto:</span> <input type="text" name="foto" id="foto" class="foto">                    
-                    <input type="button" name="enviar" id="enviar" class="enviar">
-                </form>
-            </div>
-            <div class="rodape">
-                <p class="pRodape"> AQUI VAI AS COISA DO RODAPE FIII </p>
-                <nav class="navRod">
-                    <a class="aNavRod par" href="#">Home</a>
-                    <a class="aNavRod impar" href="#">Eletrodomésticos</a>
-                    <a class="aNavRod par" href="#">Notebooks</a>
-                    <a class="aNavRod impar" href="#">Escritório</a>
-                    <a class="aNavRod par" href="#">Camping</a>
-                    <a class="aNavRod impar" href="#">Móveis</a>
-                    <a class="aNavRod par" href="#">Moda</a>
-                </nav>
-            </div>
+        </div>
+        <div id="result">
+
+        </div>
+        <div class="formulario">
+            <form class="form" method="post"  action="/ecommerce-web/cadastrar-produto">
+                <span>Nome:</span> <input type="text" name="nome" id="nome" class="nome" placeholder="Nome do Produto" required>
+                <span>Preço:</span> <input type="number" name="preco" id="preco" class="preco" placeholder="Preço do Produto" required>
+                <span>Quantidade:</span> <input type="number" name="qtde" id="qtde" class="quant" placeholder="Quantidade" required>
+                <span>Promoção:</span> <input type="number" name="promocao" id="promocao" class="promocao" placeholder="% de Desconto">
+                <span>Descrição:</span> <input type="text" name="descricao" id="descricao" class="descricao" placeholder="Sobre o que se trata?" required>
+                <span>Marca:</span> <input type="number" name="marca" id="marca" class="marca" placeholder="Marca do produto" required>                    
+                <span>Categoria:</span> <input type="number" name="categoria" id="categoria" class="cate" placeholder="Categoria do Produto" required>
+                <span>Foto:</span> <input type="file" name="foto" id="foto" class="foto" accept="image/*">                    
+                <input type="button" name="enviar" id="enviar" class="enviar" value="Cadastrar">
+            </form>
+        </div>
+        <div class="rodape">
+            <p> Lucas#Gabriel & CIA LTDA </p>
+            <span>Todos os direitos reservados a Lucas K e Gabriel G.</span>
         </div>
         <script src="../js/cadastrarProduto.js" type="text/javascript"></script>
     </body>

@@ -5,7 +5,9 @@
  */
 package beans;
 
+import dao.CategoriaDAO;
 import dao.ProdutoDAO;
+import dto.CategoriaDTO;
 import dto.ProdutoDTO;
 import exceptions.AppException;
 import java.util.List;
@@ -37,9 +39,10 @@ public class TrazProdutosBean implements TrazProdutosBeanRemote, TrazProdutosBea
         return produto;
     }
 
-    public ProdutoDTO filtrarNome(String nome) throws AppException
+    @Override
+    public List<ProdutoDTO> filtrarNome(String nome) throws AppException
     {
-        ProdutoDTO produto;
+        List<ProdutoDTO> produto;
         try
         {
             ProdutoDAO produtoDAO = new ProdutoDAO();
@@ -50,5 +53,21 @@ public class TrazProdutosBean implements TrazProdutosBeanRemote, TrazProdutosBea
             throw new AppException("Não foi possível retornar os produtos!", ex);
         }
         return produto;
+    }
+
+    @Override
+    public List<CategoriaDTO> listarCategorias() throws AppException
+    {
+        List<CategoriaDTO> categoria;
+        try
+        {
+            CategoriaDAO categoriaDAO = new CategoriaDAO();
+            categoria = categoriaDAO.findAll();
+        } catch (Exception ex)
+        {
+            Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AppException("Não foi possível retornar os produtos!", ex);
+        }
+        return categoria;
     }
 }
