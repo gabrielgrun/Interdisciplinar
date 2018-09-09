@@ -5,30 +5,29 @@
  */
 package beans;
 
-import dao.PedidoDAO;
+import dao.ClienteDAO;
+import dto.ClienteDTO;
 import exceptions.AppException;
 import java.sql.SQLException;
-import javax.ejb.Stateless;
-import dto.PedidoDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Gabriel
  */
 @Stateless
-public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCompraBeanLocal
+public class CadastrarClienteBean implements CadastrarClienteBeanRemote, CadastrarClienteBeanLocal
 {
 
     @Override
-    public void realizarCompra(PedidoDTO pedido) throws AppException
+    public void cadastrarCliente(ClienteDTO cliente) throws AppException
     {
-
         try
         {
-            PedidoDAO pedidoDAO = new PedidoDAO();
-            pedidoDAO.inserirPedido(pedido);
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.inserirCliente(cliente);
 
         } catch (SQLException ex)
         {
@@ -40,18 +39,18 @@ public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCom
     }
 
     @Override
-    public PedidoDTO ultimoPedido() throws AppException
+    public ClienteDTO ultimoCliente() throws AppException
     {
-        PedidoDTO pedido;
+        ClienteDTO cliente;
         try
         {
-            PedidoDAO clienteDAO = new PedidoDAO();
-            pedido = clienteDAO.ultimoPedido();
+            ClienteDAO clienteDAO = new ClienteDAO();
+            cliente = clienteDAO.ultimoCliente();
         } catch (Exception ex)
         {
             Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
             throw new AppException("Não foi possível retornar os produtos!", ex);
         }
-        return pedido;
+        return cliente;
     }
 }

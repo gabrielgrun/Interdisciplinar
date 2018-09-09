@@ -29,7 +29,7 @@ public class ClienteDAO
     {
         try
         {
-            String SQL = "INSERT INTO CLIENTE(ENDERECO, BAIRRO, NUMERO, CEP, COMPLEMENTO, CPF, UF, CIDADE) VALUES(?,?,?,?,?,?,?,?)";
+            String SQL = "INSERT INTO CLIENTE(ENDERECO, BAIRRO, NUMERO, CEP, COMPLEMENTO, CPF, UF, CIDADE, NOME) VALUES(?,?,?,?,?,?,?,?,?)";
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setString(1, cliente.getEndereco());
             p.setString(2, cliente.getBairro());
@@ -39,6 +39,7 @@ public class ClienteDAO
             p.setString(6, cliente.getCpf());
             p.setString(7, cliente.getUf());
             p.setString(8, cliente.getCidade());
+            p.setString(9, cliente.getNome());
             p.execute();
             p.close();
         } catch (SQLException ex)
@@ -65,6 +66,7 @@ public class ClienteDAO
             {
 
                 objeto = new ClienteDTO();
+                objeto.setNome(rs.getString("NOME"));
                 objeto.setEndereco(rs.getString("ENDERECO"));
                 objeto.setBairro(rs.getString("BAIRRO"));
                 objeto.setNumero(rs.getInt("NUMERO"));
@@ -91,7 +93,7 @@ public class ClienteDAO
 
         List<ClienteDTO> list = new ArrayList<>();
         ClienteDTO objeto;
-        String SQL = "SELECT CLIENTE"
+        String SQL = "SELECT CCLIENTE"
                 + "   FROM CLIENTE "
                 + "   ORDER BY CCLIENTE";
 
@@ -105,6 +107,7 @@ public class ClienteDAO
             {
 
                 objeto = new ClienteDTO();
+                objeto.setNome(rs.getString("NOME"));
                 objeto.setEndereco(rs.getString("ENDERECO"));
                 objeto.setBairro(rs.getString("BAIRRO"));
                 objeto.setNumero(rs.getInt("NUMERO"));
@@ -124,5 +127,44 @@ public class ClienteDAO
         }
 
         return list;
+    }
+
+    public ClienteDTO ultimoCliente() throws Exception
+    {
+
+        ClienteDTO objeto = new ClienteDTO();
+        String SQL = "SELECT FIRST 1 CLIENTE.CCLIENTE"
+                + "   FROM CLIENTE "
+                + "   ORDER BY CCLIENTE DESC";
+
+        try
+        {
+            PreparedStatement p = connection.prepareStatement(SQL);
+
+            ResultSet rs = p.executeQuery();
+
+            while (rs.next())
+            {
+                objeto = new ClienteDTO();
+                objeto.setcCliente(rs.getInt("CCLIENTE"));
+                objeto.setNome(rs.getString("NOME"));
+                objeto.setEndereco(rs.getString("ENDERECO"));
+                objeto.setBairro(rs.getString("BAIRRO"));
+                objeto.setNumero(rs.getInt("NUMERO"));
+                objeto.setCep(rs.getString("CEP"));
+                objeto.setComplemento(rs.getString("COMPLEMENTO"));
+                objeto.setCpf(rs.getString("CPF"));
+                objeto.setUf(rs.getString("UF"));
+                objeto.setCidade(rs.getString("CIDADE"));
+            }
+            rs.close();
+            p.close();
+
+        } catch (SQLException ex)
+        {
+            throw new Exception("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
+        }
+
+        return objeto;
     }
 }

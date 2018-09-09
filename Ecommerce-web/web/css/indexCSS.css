@@ -118,6 +118,7 @@ body{
     margin-left:  4%;
     margin-top:  4%;
     cursor:  pointer;
+    overflow: hidden;
 }
 .Pitem{
     text-align: justify;

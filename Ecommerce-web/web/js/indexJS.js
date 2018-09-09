@@ -44,7 +44,7 @@ function constroiCat(jasao) {
 function constroiProd(jasao) {
     for (var i = 0; i < jasao.length; i++) {
         var img = document.createElement('img');
-        img.setAttribute('src', 'C:\java_workspace\Interdisciplinar\Ecommerce-web\web\img\prod' + jasao[i].foto);
+        img.setAttribute('src', 'img/prod/' + jasao[i].foto.replace(/^.*\\/, ""));
         var div = document.createElement('div');
         var divPrincipal = document.createElement('div');
         divPrincipal.setAttribute('class', 'tamanhoItemBox');
@@ -113,29 +113,19 @@ function adicionaCarrinho(e) {
     var qtde = prompt('Insira a quantidade:', 1);
     var preco = prod.querySelector('.precoItemBox').innerText;
     var codigo = prod.querySelector('#codigo').innerText;
+    var nome = prod.querySelector('.Pitem').innerText;
+    var sifrao = prod.querySelector('.sifraoBox').innerText;
+    var pag = prod.querySelector('.pagamentoBox').innerText;
+    var imagem = prod.querySelector('.imagemBox').children[0].src;
 
     if (sessionStorage.carrinho) {
         carrinho = JSON.parse(sessionStorage.carrinho);
-
-//            if (e.target.style.color === 'red') {
-//                var codProdutoRemover = codigo;
-//                var prodRemovido = carrinho.produtos.find(function (obj, idx, arr){
-//                if (obj.codigo === codProdutoRemover) {
-//                    arr.splice(idx, 1);
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            });
-//            }
-
-
         sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
     } else {
         carrinho = {'produtos': []};
     }
 
-    carrinho.produtos.push({'codigo': codigo, 'qtde': qtde, 'preco': preco});
+    carrinho.produtos.push({'codigo': codigo, 'qtde': qtde, 'preco': preco, 'nome': nome, 'sifrao': sifrao, 'pag': pag, 'imagem': imagem});
 
     window.sessionStorage.setItem('carrinho', JSON.stringify(carrinho));
 

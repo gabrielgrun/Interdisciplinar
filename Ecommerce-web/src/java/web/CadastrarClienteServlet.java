@@ -5,13 +5,15 @@
  */
 package web;
 
-import beans.RealizarCompraBeanRemote;
+import beans.CadastrarClienteBeanRemote;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dto.ClienteDTO;
 import exceptions.AppException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -20,19 +22,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dto.PedidoDTO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Gabriel
  */
-public class RealizarCompraServlet extends HttpServlet
+public class CadastrarClienteServlet extends HttpServlet
 {
 
     @EJB
-    private RealizarCompraBeanRemote bean;
+    CadastrarClienteBeanRemote bean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -48,15 +47,13 @@ public class RealizarCompraServlet extends HttpServlet
 
         ObjectMapper mapper = new ObjectMapper();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        mapper.setDateFormat(formatter);
-        PedidoDTO pedido = mapper.readValue(content, PedidoDTO.class);
+        ClienteDTO cliente = mapper.readValue(content, ClienteDTO.class);
 
         String retorno = "";
 
         try
         {
-            bean.realizarCompra(pedido);
+            bean.cadastrarCliente(cliente);
 
         } catch (AppException ex)
         {
@@ -74,14 +71,14 @@ public class RealizarCompraServlet extends HttpServlet
         resp.setContentType("application/json");
         PrintWriter saida = resp.getWriter();
 
-        String pedido;
+        String cliente;
         try
         {
             ObjectMapper mapper = new ObjectMapper();
 
-            pedido = mapper.writeValueAsString(bean.ultimoPedido());
+            cliente = mapper.writeValueAsString(bean.ultimoCliente());
 
-            saida.write(pedido);
+            saida.write(cliente);
 
         } catch (AppException ex)
         {

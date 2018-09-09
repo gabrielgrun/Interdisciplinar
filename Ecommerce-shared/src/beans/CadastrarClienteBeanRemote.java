@@ -5,19 +5,19 @@
  */
 package beans;
 
+import dto.ClienteDTO;
 import exceptions.AppException;
 import javax.ejb.Remote;
-import dto.PedidoDTO;
 
 /**
  *
  * @author Gabriel
  */
 @Remote
-public interface RealizarCompraBeanRemote
+public interface CadastrarClienteBeanRemote
 {
 
-    public void realizarCompra(PedidoDTO pedido) throws AppException;
+    public void cadastrarCliente(ClienteDTO cliente) throws AppException;
 
-    public PedidoDTO ultimoPedido() throws AppException;
+    public ClienteDTO ultimoCliente() throws AppException;
 }

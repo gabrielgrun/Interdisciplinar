@@ -27,22 +27,15 @@ public class PedidoDAO
         connection = ConnectionUtil.getConnection();
     }
 
-    public void inserirPedido(PedidoDTO pedido, ClienteDTO cliente) throws AppException
+    public void inserirPedido(PedidoDTO pedido) throws AppException
     {
         try
         {
-            String SQL = "INSERT INTO PEDIDO(ENDERECO, BAIRRO, NUMERO, CEP, COMPLEMENTO, CPF, DATA, VALOR, UF, CIDADE) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String SQL = "INSERT INTO PEDIDO(DATA, VALOR, CCLIENTE) VALUES(?,?,?)";
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setString(1, cliente.getEndereco());
-            p.setString(2, cliente.getBairro());
-            p.setInt(3, cliente.getNumero());
-            p.setString(4, cliente.getCep());
-            p.setString(5, cliente.getComplemento());
-            p.setString(6, cliente.getCpf());
-            p.setDate(7, pedido.getData());
-            p.setDouble(8, pedido.getValor());
-            p.setString(9, cliente.getUf());
-            p.setString(10, cliente.getCidade());
+            p.setDate(1, pedido.getData());
+            p.setDouble(2, pedido.getValor());
+            p.setInt(3, pedido.getCliente().getcCliente());
             p.execute();
             p.close();
         } catch (SQLException ex)
@@ -146,5 +139,38 @@ public class PedidoDAO
         }
 
         return list;
+    }
+
+    public PedidoDTO ultimoPedido() throws Exception
+    {
+
+        PedidoDTO objeto = new PedidoDTO();
+        String SQL = "SELECT FIRST 1 PEDIDO.CPEDIDO"
+                + "   FROM PEDIDO "
+                + "   ORDER BY CPEDIDO DESC";
+
+        try
+        {
+            PreparedStatement p = connection.prepareStatement(SQL);
+
+            ResultSet rs = p.executeQuery();
+
+            while (rs.next())
+            {
+                objeto = new PedidoDTO();
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+                objeto.setData(rs.getDate("DATA"));
+                objeto.setValor(rs.getDouble("VALOR"));
+
+            }
+            rs.close();
+            p.close();
+
+        } catch (SQLException ex)
+        {
+            throw new Exception("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
+        }
+
+        return objeto;
     }
 }

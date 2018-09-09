@@ -5,13 +5,13 @@
  */
 package web;
 
-import beans.RealizarCompraBeanRemote;
+import beans.CadastrarPedidoItemBeanRemote;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dto.PedidoItemDTO;
 import exceptions.AppException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -20,19 +20,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dto.PedidoDTO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Gabriel
  */
-public class RealizarCompraServlet extends HttpServlet
+public class CadastrarPedidoItemServlet extends HttpServlet
 {
 
     @EJB
-    private RealizarCompraBeanRemote bean;
+    CadastrarPedidoItemBeanRemote bean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -48,15 +45,13 @@ public class RealizarCompraServlet extends HttpServlet
 
         ObjectMapper mapper = new ObjectMapper();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        mapper.setDateFormat(formatter);
-        PedidoDTO pedido = mapper.readValue(content, PedidoDTO.class);
+        PedidoItemDTO pedidoItem = mapper.readValue(content, PedidoItemDTO.class);
 
         String retorno = "";
 
         try
         {
-            bean.realizarCompra(pedido);
+            bean.cadastrarPedidoItem(pedidoItem);
 
         } catch (AppException ex)
         {
@@ -67,26 +62,4 @@ public class RealizarCompraServlet extends HttpServlet
 
         saida.write(json.toString());
     }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-    {
-        resp.setContentType("application/json");
-        PrintWriter saida = resp.getWriter();
-
-        String pedido;
-        try
-        {
-            ObjectMapper mapper = new ObjectMapper();
-
-            pedido = mapper.writeValueAsString(bean.ultimoPedido());
-
-            saida.write(pedido);
-
-        } catch (AppException ex)
-        {
-            Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
 }

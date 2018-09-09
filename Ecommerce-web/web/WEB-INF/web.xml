@@ -12,6 +12,14 @@
         <servlet-name>CadastrarProdutoServlet</servlet-name>
         <servlet-class>web.CadastrarProdutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastrarClienteServlet</servlet-name>
+        <servlet-class>web.CadastrarClienteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarPedidoItemServlet</servlet-name>
+        <servlet-class>web.CadastrarPedidoItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RealizarCompraServlet</servlet-name>
         <url-pattern>/realizar-compra</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>CadastrarProdutoServlet</servlet-name>
         <url-pattern>/cadastrar-produto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarClienteServlet</servlet-name>
+        <url-pattern>/cadastrar-cliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarPedidoItemServlet</servlet-name>
+        <url-pattern>/cadastrar-item</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

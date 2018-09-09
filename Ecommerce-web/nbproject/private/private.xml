@@ -7,13 +7,16 @@
             <file>file:/D:/Técnico/INTERDISCIPLINAR/Interdisciplinar/Ecommerce-web/web/js/indexJS.js</file>
         </group>
         <group>
-            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/css/indexCSS.css</file>
-            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/js/cadastrarProduto.js</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/CadastrarPedidoItemServlet.java</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/css/cadastroCSS.css</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/CadastrarClienteServlet.java</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/js/carrinho.js</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/WEB-INF/web.xml</file>
             <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/js/indexJS.js</file>
-            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/CadastrarProdutoServlet.java</file>
-            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/index.html</file>
             <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/html/cadastroHTML.html</file>
-            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/PesquisarProdutosServlet.java</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/index.html</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/web/html/carrinhoHTML.html</file>
+            <file>file:/C:/java_workspace/Interdisciplinar/Ecommerce-web/src/java/web/RealizarCompraServlet.java</file>
         </group>
     </open-files>
 </project-private>
