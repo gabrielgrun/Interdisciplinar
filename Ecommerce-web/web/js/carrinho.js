@@ -1,7 +1,7 @@
 var URL = "http://localhost:8080/Ecommerce-web/realizar-compra";
 var codCliente;
 var codPedido;
-//document.querySelector('botao').addEventListener('click', realizarCompra);
+document.querySelector('#finalizarCompra').addEventListener('click', realizarCompra);
 
 function reqHttpPost(pedido) {
     var http = new XMLHttpRequest();
@@ -144,6 +144,7 @@ function removeCarrinho(e) {
     var carrinho = window.sessionStorage.getItem('carrinho');
     carrinho = JSON.parse(carrinho);
     var prod = e.target.parentNode.parentNode;
+    prod.classList.remove('produto');
     var codigo = prod.querySelector('#codigo').innerHTML;
     for (var i = 0; i < carrinho.produtos.length; i++) {
         if (codigo === carrinho.produtos[i].codigo) {

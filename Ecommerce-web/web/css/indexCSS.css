@@ -7,6 +7,9 @@ body{
     max-width: 73.125rem;
     min-width: 50rem;
 }
+a{
+    text-decoration: none;
+}
 .container{
     margin: 0 auto;
     max-width: 73.125rem;

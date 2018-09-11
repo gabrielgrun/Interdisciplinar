@@ -1,6 +1,5 @@
 package dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
 /**
@@ -11,10 +10,6 @@ public class MarcaDTO implements Serializable
 {
 
     private int cMarca;
-    @JsonIgnoreProperties(
-            {
-                "nome"
-            })
     private String nome;
 
     public int getcMarca()
