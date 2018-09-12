@@ -133,7 +133,7 @@ public class ClienteDAO
     {
 
         ClienteDTO objeto = new ClienteDTO();
-        String SQL = "SELECT FIRST 1 CLIENTE.CCLIENTE"
+        String SQL = "SELECT FIRST 1 *"
                 + "   FROM CLIENTE "
                 + "   ORDER BY CCLIENTE DESC";
 
@@ -147,7 +147,6 @@ public class ClienteDAO
             {
                 objeto = new ClienteDTO();
                 objeto.setcCliente(rs.getInt("CCLIENTE"));
-                objeto.setNome(rs.getString("NOME"));
                 objeto.setEndereco(rs.getString("ENDERECO"));
                 objeto.setBairro(rs.getString("BAIRRO"));
                 objeto.setNumero(rs.getInt("NUMERO"));
@@ -156,6 +155,7 @@ public class ClienteDAO
                 objeto.setCpf(rs.getString("CPF"));
                 objeto.setUf(rs.getString("UF"));
                 objeto.setCidade(rs.getString("CIDADE"));
+                objeto.setNome(rs.getString("NOME"));
             }
             rs.close();
             p.close();

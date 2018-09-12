@@ -5,24 +5,19 @@ var json;
 
 function reqHttpGet() {
     var http = new XMLHttpRequest();
-    http.open('GET', URL, true);
+    http.open('GET', URL, false);
     http.setRequestHeader("Content-type", "application/json");
     http.send(null);
 
-    http.onreadystatechange = function ()
-    {
-        if (this.readyState === 4 && this.status === 200) {
-            json = http.responseText.split('#G#');
-            var categ = {};
-            var jasao = {};
-            jasao = json[0];
-            categ = json[1];
-            jasao = JSON.parse(json[0]);
-            categ = JSON.parse(json[1]);
-            constroiProd(jasao);
-            constroiCat(categ);
-        }
-    };
+    json = http.responseText.split('#G#');
+    var categ = {};
+    var jasao = {};
+    jasao = json[0];
+    categ = json[1];
+    jasao = JSON.parse(json[0]);
+    categ = JSON.parse(json[1]);
+    constroiProd(jasao);
+    constroiCat(categ);
 }
 
 window.onload = listarProdutos;
@@ -101,12 +96,12 @@ function constroiProd(jasao) {
 }
 
 function chamaCarrinho() {
-        var carrinho = document.querySelectorAll('.addCarrinhoItemBox');
+    var carrinho = document.querySelectorAll('.addCarrinhoItemBox');
 
-        for (var i = 0; i < carrinho.length; i++) {
-            carrinho[i].addEventListener('click', adicionaCarrinho);
-        }
+    for (var i = 0; i < carrinho.length; i++) {
+        carrinho[i].addEventListener('click', adicionaCarrinho);
     }
+}
 function adicionaCarrinho(e) {
     var prod = e.target.parentNode.parentNode;
     var carrinho;

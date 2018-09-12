@@ -12,17 +12,16 @@ public class PedidoDTO implements Serializable
 
     private int cPedido;
     private Date data;
-    private double valor;
-    private ClienteDTO cliente;
+    private ClienteDTO cCliente;
 
-    public ClienteDTO getCliente()
+    public ClienteDTO getcCliente()
     {
-        return cliente;
+        return cCliente;
     }
 
-    public void setCliente(ClienteDTO cliente)
+    public void setcCliente(ClienteDTO cCliente)
     {
-        this.cliente = cliente;
+        this.cCliente = cCliente;
     }
 
     public int getcPedido()
@@ -44,15 +43,4 @@ public class PedidoDTO implements Serializable
     {
         this.data = data;
     }
-
-    public double getValor()
-    {
-        return valor;
-    }
-
-    public void setValor(double valor)
-    {
-        this.valor = valor;
-    }
-
 }

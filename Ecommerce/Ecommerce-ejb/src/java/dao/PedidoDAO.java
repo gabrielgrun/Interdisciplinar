@@ -31,11 +31,10 @@ public class PedidoDAO
     {
         try
         {
-            String SQL = "INSERT INTO PEDIDO(DATA, VALOR, CCLIENTE) VALUES(?,?,?)";
+            String SQL = "INSERT INTO PEDIDO(DATA, CCLIENTE) VALUES(?,?)";
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setDate(1, pedido.getData());
-            p.setDouble(2, pedido.getValor());
-            p.setInt(3, pedido.getCliente().getcCliente());
+            p.setInt(2, pedido.getcCliente().getcCliente());
             p.execute();
             p.close();
         } catch (SQLException ex)
@@ -73,11 +72,10 @@ public class PedidoDAO
                 cliente.setCpf(rs.getString("CPF"));
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 objeto.setData(rs.getDate("DATA"));
-                objeto.setValor(rs.getDouble("VALOR"));
                 cliente.setUf(rs.getString("UF"));
                 cliente.setCidade(rs.getString("CIDADE"));
 
-                objeto.setCliente(cliente);
+                objeto.setcCliente(cliente);
                 list.add(objeto);
             }
             rs.close();
@@ -123,11 +121,10 @@ public class PedidoDAO
                 cliente.setCpf(rs.getString("CPF"));
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 objeto.setData(rs.getDate("DATA"));
-                objeto.setValor(rs.getDouble("VALOR"));
                 cliente.setUf(rs.getString("UF"));
                 cliente.setCidade(rs.getString("CIDADE"));
 
-                objeto.setCliente(cliente);
+                objeto.setcCliente(cliente);
                 list.add(objeto);
             }
             rs.close();
@@ -145,7 +142,7 @@ public class PedidoDAO
     {
 
         PedidoDTO objeto = new PedidoDTO();
-        String SQL = "SELECT FIRST 1 PEDIDO.CPEDIDO"
+        String SQL = "SELECT FIRST 1 *"
                 + "   FROM PEDIDO "
                 + "   ORDER BY CPEDIDO DESC";
 
@@ -160,8 +157,6 @@ public class PedidoDAO
                 objeto = new PedidoDTO();
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 objeto.setData(rs.getDate("DATA"));
-                objeto.setValor(rs.getDouble("VALOR"));
-
             }
             rs.close();
             p.close();

@@ -15,7 +15,6 @@ public class ClienteDTO implements Serializable
 {
 
     private int cCliente;
-    private String nome;
     private String endereco;
     private String bairro;
     private int numero;
@@ -24,6 +23,7 @@ public class ClienteDTO implements Serializable
     private String cpf;
     private String uf;
     private String cidade;
+    private String nome;
 
     public int getcCliente()
     {

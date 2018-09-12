@@ -49,7 +49,7 @@ public class CadastrarClienteBean implements CadastrarClienteBeanRemote, Cadastr
         } catch (Exception ex)
         {
             Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
-            throw new AppException("Não foi possível retornar os produtos!", ex);
+            throw new AppException("Não foi possível retornar os clientes!", ex);
         }
         return cliente;
     }

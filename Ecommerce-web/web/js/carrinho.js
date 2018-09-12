@@ -5,69 +5,51 @@ document.querySelector('#finalizarCompra').addEventListener('click', realizarCom
 
 function reqHttpPost(pedido) {
     var http = new XMLHttpRequest();
-    http.open('POST', URL, true);
+    http.open('POST', URL, false);
     http.setRequestHeader("Content-type", "application/json");
-    http.send(pedido);
+    http.send(JSON.stringify(pedido));
 
-    http.onreadystatechange = function ()
-    {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
-            parseJson(this.responseText);
-        }
-    };
+    console.log(http.responseText);
 }
 
 function reqHttpPostPedidoItem(pedidoItem) {
     var http = new XMLHttpRequest();
     var urlPedidoItem = 'http://localhost:8080/Ecommerce-web/cadastrar-item';
-    http.open('POST', urlPedidoItem, true);
+    http.open('POST', urlPedidoItem, false);
     http.setRequestHeader("Content-type", "application/json");
-    http.send(pedidoItem);
+    http.send(JSON.stringify(pedidoItem));
 
-    http.onreadystatechange = function ()
-    {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
-            parseJson(this.responseText);
-        }
-    };
+    console.log(this.responseText);
 }
 
 function reqHttpPostCliente(cliente) {
     var http = new XMLHttpRequest();
     var urlCliente = 'http://localhost:8080/Ecommerce-web/cadastrar-cliente';
-    http.open('POST', urlCliente, true);
-    http.setRequestHeader("Content-type", "application/json");
-    http.send(cliente);
-
-    http.onreadystatechange = function ()
-    {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
-            parseJson(this.responseText);
-        }
-    };
-}
-
-function reqHttpGetCliente() {
-    var http = new XMLHttpRequest();
-    var urlCliente = 'http://localhost:8080/Ecommerce-web/cadastrar-cliente';
     http.open('POST', urlCliente, false);
     http.setRequestHeader("Content-type", "application/json");
-    http.send(null);
+    http.send(JSON.stringify(cliente));
+
+    console.log(http.responseText);
+}
+
+function reqHttpGetCliente2() {
+    var http = new XMLHttpRequest();
+    var urlCliente = 'http://localhost:8080/Ecommerce-web/cadastrar-cliente';
+    http.open('GET', urlCliente, false);
+    http.setRequestHeader("Content-type", "application/json");
+    http.send();
 
     var json = http.responseText;
     json = JSON.parse(json);
     codCliente = json.cCliente;
 }
 
-function reqHttpGetCliente() {
+function reqHttpGetPedido() {
     var http = new XMLHttpRequest();
     var urlPedido = 'http://localhost:8080/Ecommerce-web/realizar-compra';
-    http.open('POST', urlPedido, false);
+    http.open('GET', urlPedido, false);
     http.setRequestHeader("Content-type", "application/json");
-    http.send(null);
+    http.send();
 
     var json = http.responseText;
     json = JSON.parse(json);
@@ -164,14 +146,28 @@ function removeCarrinho(e) {
     prod.innerHTML = "";
 }
 
+function dataAtualFormatada() {
+    var data = new Date();
+    var dia = data.getDate();
+    if (dia.toString().length === 1)
+        dia = "0" + dia;
+    var mes = data.getMonth() + 1;
+    if (mes.toString().length === 1)
+        mes = "0" + mes;
+    var ano = data.getFullYear();
+    return dia + "/" + mes + "/" + ano;
+}
+
 function realizarCompra(e) {
     var produtos = sessionStorage.getItem('carrinho');
     produtos = JSON.parse(produtos);
     var pedido = {};
     var cliente = {};
+    var cCliente = {};
+    var cPedido = {};
     var pedidoItem = {};
     var dadosCliente = document.querySelector('.dadosCliente form');
-
+    
 
     cliente.endereco = dadosCliente.querySelector('.endereco').value;
     cliente.cpf = dadosCliente.querySelector('.cpf').value;
@@ -184,20 +180,23 @@ function realizarCompra(e) {
     cliente.nome = dadosCliente.querySelector('.nome').value;
 
     reqHttpPostCliente(cliente);
-    reqHttpGetCliente();
+    reqHttpGetCliente2();
 
-    pedido.valor = produtos.preco;
-    pedido.data = new Date();
-    pedido.cCliente = codCliente;
+    cCliente.cCliente = codCliente;
+
+    pedido.data = dataAtualFormatada();
+    pedido.cCliente = cCliente;
 
     reqHttpPost(pedido);
     reqHttpGetPedido();
+    
+    cPedido.cPedido = codPedido;
 
     for (var i = 0; i < produtos.produtos[i].length; i++) {
         pedidoItem.qtde = produtos.produtos[i].qtde;
         pedidoItem.valor = produtos.produtos[i].preco;
         pedidoItem.cProduto = produtos.produtos[i].codigo;
-        pedidoItem.cPedido = codPedido;
+        pedidoItem.cPedido = cPedido;
 
         reqHttpPostPedidoItem(pedidoItem);
     }

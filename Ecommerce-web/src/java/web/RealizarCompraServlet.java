@@ -6,6 +6,7 @@
 package web;
 
 import beans.RealizarCompraBeanRemote;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.AppException;
 import java.io.BufferedReader;
@@ -50,6 +51,7 @@ public class RealizarCompraServlet extends HttpServlet
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         mapper.setDateFormat(formatter);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         PedidoDTO pedido = mapper.readValue(content, PedidoDTO.class);
 
         String retorno = "";
