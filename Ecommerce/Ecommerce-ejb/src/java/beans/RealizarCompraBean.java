@@ -10,6 +10,7 @@ import exceptions.AppException;
 import java.sql.SQLException;
 import javax.ejb.Stateless;
 import dto.PedidoDTO;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,6 +48,22 @@ public class RealizarCompraBean implements RealizarCompraBeanRemote, RealizarCom
         {
             PedidoDAO clienteDAO = new PedidoDAO();
             pedido = clienteDAO.ultimoPedido();
+        } catch (Exception ex)
+        {
+            Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AppException("Não foi possível retornar os produtos!", ex);
+        }
+        return pedido;
+    }
+
+    @Override
+    public List<PedidoDTO> criarRel() throws AppException
+    {
+        List<PedidoDTO> pedido;
+        try
+        {
+            PedidoDAO pedidoDAO = new PedidoDAO();
+            pedido = pedidoDAO.criarRel();
         } catch (Exception ex)
         {
             Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);

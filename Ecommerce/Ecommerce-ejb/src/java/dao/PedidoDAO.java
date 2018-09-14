@@ -50,7 +50,7 @@ public class PedidoDAO
         List<PedidoDTO> list = new ArrayList<>();
         try
         {
-            String SQL = "SELECT PEDIDOITEM.CPEDIDO"
+            String SQL = "SELECT * "
                     + "   FROM PEDIDOITEM"
                     + "   INNER JOIN PEDIDO ON (PEDIDO.CPEDIDO = PEDIDOITEM.CPEDIDO)";
             PreparedStatement p;
@@ -71,7 +71,7 @@ public class PedidoDAO
                 cliente.setComplemento(rs.getString("COMPLEMENTO"));
                 cliente.setCpf(rs.getString("CPF"));
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-                objeto.setData(rs.getDate("DATA"));
+                objeto.setData(new java.sql.Date(rs.getDate("DATA").getTime()));
                 cliente.setUf(rs.getString("UF"));
                 cliente.setCidade(rs.getString("CIDADE"));
 

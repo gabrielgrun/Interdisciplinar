@@ -5,6 +5,7 @@
  */
 package web;
 
+import beans.RealizarCompraBeanRemote;
 import beans.TrazProdutosBeanRemote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.AppException;
@@ -30,6 +31,9 @@ public class TrazerCategoriaServlet extends HttpServlet
     @EJB
     TrazProdutosBeanRemote bean;
 
+    @EJB
+    RealizarCompraBeanRemote bean2;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
@@ -51,4 +55,26 @@ public class TrazerCategoriaServlet extends HttpServlet
 
         saida.write(jsonJava);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        resp.setContentType("application/json");
+        PrintWriter saida = resp.getWriter();
+
+        String pedido;
+        try
+        {
+            ObjectMapper mapper = new ObjectMapper();
+
+            pedido = mapper.writeValueAsString(bean2.criarRel());
+
+            saida.write(pedido);
+
+        } catch (AppException ex)
+        {
+            Logger.getLogger(PesquisarProdutosServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

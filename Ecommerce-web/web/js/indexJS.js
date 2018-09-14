@@ -161,8 +161,7 @@ function adicionaCarrinho(e) {
 
     //e.target.style.color = 'red';
     var a = window.sessionStorage.getItem('carrinho');
-    console.log(a);
-
+    e.target.style.color = 'green';
 }
 
 pesquisaNome();

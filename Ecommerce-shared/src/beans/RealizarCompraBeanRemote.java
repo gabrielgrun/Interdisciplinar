@@ -8,6 +8,7 @@ package beans;
 import exceptions.AppException;
 import javax.ejb.Remote;
 import dto.PedidoDTO;
+import java.util.List;
 
 /**
  *
@@ -20,4 +21,6 @@ public interface RealizarCompraBeanRemote
     public void realizarCompra(PedidoDTO pedido) throws AppException;
 
     public PedidoDTO ultimoPedido() throws AppException;
+
+    public List<PedidoDTO> criarRel() throws AppException;
 }
