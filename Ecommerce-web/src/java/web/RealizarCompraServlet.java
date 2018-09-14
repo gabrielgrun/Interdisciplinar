@@ -81,6 +81,8 @@ public class RealizarCompraServlet extends HttpServlet
         {
             ObjectMapper mapper = new ObjectMapper();
 
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            mapper.setDateFormat(formatter);
             pedido = mapper.writeValueAsString(bean.ultimoPedido());
 
             saida.write(pedido);

@@ -20,6 +20,14 @@
         <servlet-name>CadastrarPedidoItemServlet</servlet-name>
         <servlet-class>web.CadastrarPedidoItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisarIDProdServlet</servlet-name>
+        <servlet-class>web.PesquisarIDProdServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrazerCategoriaServlet</servlet-name>
+        <servlet-class>web.TrazerCategoriaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RealizarCompraServlet</servlet-name>
         <url-pattern>/realizar-compra</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>CadastrarPedidoItemServlet</servlet-name>
         <url-pattern>/cadastrar-item</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisarIDProdServlet</servlet-name>
+        <url-pattern>/pesquisar-prod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrazerCategoriaServlet</servlet-name>
+        <url-pattern>/trazer-categoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

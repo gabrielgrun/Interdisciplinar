@@ -67,6 +67,8 @@ function montaCarrinho() {
         div.setAttribute('class', 'produto');
         var div2 = document.createElement('div');
         div2.setAttribute('class', 'fotoProd');
+        var img = document.createElement('img');
+        img.setAttribute('src', "../" + json.produtos[i].imagem);
         var p = document.createElement('p');
         p.setAttribute('class', 'desc');
         p.innerHTML = json.produtos[i].nome;
@@ -97,6 +99,7 @@ function montaCarrinho() {
         spanCod.innerText = json.produtos[i].codigo;
 
         div.appendChild(spanCod);
+        div2.appendChild(img);
         div.appendChild(div2);
         div.appendChild(p);
         div.appendChild(p2);
@@ -164,6 +167,7 @@ function realizarCompra(e) {
     var pedido = {};
     var cliente = {};
     var cCliente = {};
+    var cProduto = {};
     var cPedido = {};
     var pedidoItem = {};
     var dadosCliente = document.querySelector('.dadosCliente form');
@@ -191,11 +195,13 @@ function realizarCompra(e) {
     reqHttpGetPedido();
     
     cPedido.cPedido = codPedido;
+    
 
-    for (var i = 0; i < produtos.produtos[i].length; i++) {
+    for (var i = 0; i < produtos.produtos.length; i++) {
         pedidoItem.qtde = produtos.produtos[i].qtde;
         pedidoItem.valor = produtos.produtos[i].preco;
-        pedidoItem.cProduto = produtos.produtos[i].codigo;
+        cProduto.cProduto = produtos.produtos[i].codigo;
+        pedidoItem.cProduto = cProduto;
         pedidoItem.cPedido = cPedido;
 
         reqHttpPostPedidoItem(pedidoItem);

@@ -1,11 +1,11 @@
 /* global http, formData */
 
-var URL = "http://localhost:8080/Ecommerce-web/pesquisar-produtos";
+var URLz = "http://localhost:8080/Ecommerce-web/pesquisar-produtos";
 var json;
 
 function reqHttpGet() {
     var http = new XMLHttpRequest();
-    http.open('GET', URL, false);
+    http.open('GET', URLz, false);
     http.setRequestHeader("Content-type", "application/json");
     http.send(null);
 
@@ -20,10 +20,27 @@ function reqHttpGet() {
     constroiCat(categ);
 }
 
+
+function reqHttpPostCateg(json) {
+    var http = new XMLHttpRequest();
+    var urlCateg = 'http://localhost:8080/Ecommerce-web/trazer-categoria';
+    http.open('POST', urlCateg, false);
+    http.setRequestHeader("Content-type", "application/json");
+    http.send(JSON.stringify(json));
+    
+    var json2 = http.responseText;
+    json2 = JSON.parse(json2);
+    filtrarProd(json2);
+}
+
 window.onload = listarProdutos;
 
 function listarProdutos() {
     reqHttpGet();
+}
+
+function chamaDetalhes(e){
+    window.location = 'html/produtoHTML.html?cproduto=' + e.target.parentNode.parentNode.querySelector('#codigo').innerText;
 }
 
 function constroiCat(jasao) {
@@ -33,7 +50,20 @@ function constroiCat(jasao) {
         var a = document.createElement('a');
         a.innerHTML = jasao[i].nome;
         menu.appendChild(a);
+        chamaCateg();
     }
+}
+
+function chamaCateg(){
+    var categ = document.querySelectorAll('.nav a');
+
+    for (var i = 0; i < categ.length; i++) {
+        categ[i].addEventListener('click', addCateg);
+    }
+}
+
+function addCateg(e){
+    reqHttpPostCateg(e.target.innerText);
 }
 
 function constroiProd(jasao) {
@@ -90,6 +120,11 @@ function constroiProd(jasao) {
         divPrincipal.appendChild(div);
 
         document.querySelector('.listaItens').appendChild(divPrincipal);
+        var prods = document.querySelectorAll('.visitar');
+        
+        for (var i = 0; i < prods.length; i++) {
+            prods[i].addEventListener('click', chamaDetalhes);
+        }
 
         chamaCarrinho();
     }
@@ -111,7 +146,7 @@ function adicionaCarrinho(e) {
     var nome = prod.querySelector('.Pitem').innerText;
     var sifrao = prod.querySelector('.sifraoBox').innerText;
     var pag = prod.querySelector('.pagamentoBox').innerText;
-    var imagem = prod.querySelector('.imagemBox').children[0].src;
+    var imagem = prod.querySelector('.imagemBox').children[0].getAttribute('src');
 
     if (sessionStorage.carrinho) {
         carrinho = JSON.parse(sessionStorage.carrinho);
@@ -138,7 +173,7 @@ function pesquisaNome() {
 
 function reqHttpPost() {
     var http = new XMLHttpRequest();
-    http.open('POST', URL, false);
+    http.open('POST', URLz, false);
     http.send(document.querySelector('.caixaPesquisaHeader').value);
     var jasao = {};
     jasao = http.responseText;

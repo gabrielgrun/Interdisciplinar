@@ -40,6 +40,22 @@ public class TrazProdutosBean implements TrazProdutosBeanRemote, TrazProdutosBea
     }
 
     @Override
+    public List<ProdutoDTO> filtrarCategoria(String categoria) throws AppException
+    {
+        List<ProdutoDTO> produto;
+        try
+        {
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            produto = produtoDAO.findByCategoria(categoria);
+        } catch (Exception ex)
+        {
+            Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AppException("Não foi possível retornar os produtos!", ex);
+        }
+        return produto;
+    }
+
+    @Override
     public List<ProdutoDTO> filtrarNome(String nome) throws AppException
     {
         List<ProdutoDTO> produto;
@@ -69,5 +85,21 @@ public class TrazProdutosBean implements TrazProdutosBeanRemote, TrazProdutosBea
             throw new AppException("Não foi possível retornar os produtos!", ex);
         }
         return categoria;
+    }
+
+    @Override
+    public ProdutoDTO filtrarID(int id) throws AppException
+    {
+        ProdutoDTO produto;
+        try
+        {
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            produto = produtoDAO.findById(id);
+        } catch (Exception ex)
+        {
+            Logger.getLogger(TrazProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+            throw new AppException("Não foi possível retornar os produtos!", ex);
+        }
+        return produto;
     }
 }

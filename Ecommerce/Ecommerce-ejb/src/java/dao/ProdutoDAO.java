@@ -53,18 +53,16 @@ public class ProdutoDAO
     public ProdutoDTO findById(int id) throws Exception
     {
         ProdutoDTO objeto = new ProdutoDTO();
-        String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
+        String SQL = " SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME "
                 + "   FROM PRODUTO "
                 + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
                 + "   INNER JOIN MARCA ON MARCA.CMARCA = PRODUTO.CMARCA "
-                + "   ORDER BY CPRODUTO "
-                + "   WHERE PRODUTO.CPRODUTO = ?";
+                + "   WHERE PRODUTO.CPRODUTO = " + id
+                + "   ORDER BY PRODUTO.CPRODUTO ";
 
         try
         {
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setInt(1, id);
-
             ResultSet rs = p.executeQuery();
 
             while (rs.next())
@@ -207,14 +205,57 @@ public class ProdutoDAO
         return list;
     }
 
-    public ProdutoDTO update()
+    public List<ProdutoDTO> findByCategoria(String categoria) throws Exception
     {
-        String SQL = "";
-        return null;
-    }
 
-    public ProdutoDTO delete()
-    {
-        return null;
+        List<ProdutoDTO> list = new ArrayList<>();
+        ProdutoDTO objeto;
+        String SQL = "SELECT PRODUTO.*, CATEGORIA.NOME, MARCA.NOME"
+                + "   FROM PRODUTO "
+                + "   INNER JOIN CATEGORIA ON CATEGORIA.CCATEGORIA = PRODUTO.CCATEGORIA "
+                + "   INNER JOIN MARCA ON MARCA.CMARCA = PRODUTO.CMARCA "
+                + "   WHERE CATEGORIA.NOME ='" + categoria + "'"
+                + "   ORDER BY CPRODUTO";
+
+        try
+        {
+            PreparedStatement p = connection.prepareStatement(SQL);
+
+            ResultSet rs = p.executeQuery();
+
+            while (rs.next())
+            {
+
+                objeto = new ProdutoDTO();
+                objeto.setcProduto(rs.getInt("CPRODUTO"));
+                objeto.setNome(rs.getString("NOME"));
+                objeto.setDescricao(rs.getString("DESCRICAO"));
+                objeto.setFoto(rs.getString("FOTO"));
+                objeto.setQtde(rs.getInt("QTDE"));
+                objeto.setPreco(rs.getDouble("PRECO"));
+                objeto.setPromocao(rs.getDouble("PROMOCAO"));
+
+                CategoriaDTO categorias = new CategoriaDTO();
+                categorias.setcCategoria(rs.getInt("CCATEGORIA"));
+                categorias.setNome(rs.getString("NOME"));
+
+                MarcaDTO marca = new MarcaDTO();
+                marca.setcMarca(rs.getInt("CMARCA"));
+                marca.setNome(rs.getString("NOME"));
+
+                objeto.setcCategoria(categorias);
+                objeto.setcMarca(marca);
+
+                list.add(objeto);
+            }
+            rs.close();
+            p.close();
+
+        } catch (SQLException ex)
+        {
+            throw new AppException("Ocorreu um erro ao consultar. Tente novamente, caso o erro persista contate o suporte.", ex);
+        }
+
+        return list;
     }
 }

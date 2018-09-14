@@ -142,21 +142,21 @@ public class PedidoDAO
     {
 
         PedidoDTO objeto = new PedidoDTO();
-        String SQL = "SELECT FIRST 1 *"
+        String SQL = "SELECT FIRST 1 * "
                 + "   FROM PEDIDO "
-                + "   ORDER BY CPEDIDO DESC";
+                + "   ORDER BY CPEDIDO DESC ";
 
         try
         {
             PreparedStatement p = connection.prepareStatement(SQL);
 
             ResultSet rs = p.executeQuery();
-
             while (rs.next())
             {
                 objeto = new PedidoDTO();
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-                objeto.setData(rs.getDate("DATA"));
+                objeto.setcPedido(rs.getInt("CPEDIDO"));
+                objeto.setData(new java.sql.Date(rs.getDate("DATA").getTime()));
             }
             rs.close();
             p.close();
